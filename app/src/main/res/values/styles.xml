@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema Khusus untuk Splash Screen -->
+    <style name="Theme.App.Starting" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
+    <!-- Tema Utama Aplikasi -->
+    <style name="Theme.GRMRadar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#561C24</item>
+    </style>
+</resources>

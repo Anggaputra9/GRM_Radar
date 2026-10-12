@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background Warna Maroon -->
+    <item android:drawable="@color/maroon_bg" />
+    
+    <!-- Logo di Tengah Layar -->
+    <item android:gravity="center">
+        <bitmap
+            android:src="@drawable/logo"
+            android:gravity="center" />
+    </item>
+</layer-list>

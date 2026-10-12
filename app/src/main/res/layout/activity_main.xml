@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#561C24"
+        android:text="Notifikasi"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="AKTIFKAN NOTIFIKASI\nGRM-Radar"
+            android:textColor="#A27B82"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"/>
+
+        <Switch
+            android:id="@+id/switchRadar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:layout_marginEnd="16dp"
+            android:thumbTint="#561C24"
+            android:trackTint="#D3D3D3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btnLihatRiwayat"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#561C24"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Lihat Riwayat"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+            
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#8594;"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</RelativeLayout>

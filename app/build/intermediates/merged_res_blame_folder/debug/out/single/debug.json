@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-merged_res-31:\\xml_accessibility_config.xml.flat",
+        "source": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-main-33:\\xml\\accessibility_config.xml"
+    },
+    {
+        "merged": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-merged_res-31:\\drawable_logo_foreground.xml.flat",
+        "source": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-main-33:\\drawable\\logo_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-merged_res-31:\\layout_layout_popup.xml.flat",
+        "source": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-main-33:\\layout\\layout_popup.xml"
+    },
+    {
+        "merged": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-merged_res-31:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-main-33:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-merged_res-31:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-main-33:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-merged_res-31:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-main-33:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-merged_res-31:\\layout_item_riwayat.xml.flat",
+        "source": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-main-33:\\layout\\item_riwayat.xml"
+    },
+    {
+        "merged": "com.example.grmradar.app-merged_res-31:/drawable_splash_background.xml.flat",
+        "source": "com.example.grmradar.app-main-33:/drawable/splash_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-merged_res-31:\\layout_activity_riwayat.xml.flat",
+        "source": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-main-33:\\layout\\activity_riwayat.xml"
+    },
+    {
+        "merged": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-merged_res-31:\\drawable_logo.png.flat",
+        "source": "C:\\Users\\angga\\.gradle\\daemon\\8.12\\com.example.grmradar.app-main-33:\\drawable\\logo.png"
+    }
+]

@@ -1,0 +1,25 @@
+R_DEF: Internal format may change without notice
+local
+color maroon_bg
+drawable logo
+drawable logo_foreground
+drawable splash_background
+id btnBack
+id btnKembali
+id btnLihatRiwayat
+id containerRiwayat
+id switchRadar
+id tvDate
+id tvHeader
+id tvTime
+id tvTitle
+layout activity_main
+layout activity_riwayat
+layout item_riwayat
+layout layout_popup
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.App.Starting
+style Theme.GRMRadar
+xml accessibility_config
