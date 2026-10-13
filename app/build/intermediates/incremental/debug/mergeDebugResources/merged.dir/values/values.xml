@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="http://schemas.android.com/tools" xmlns:ns2="urn:oasis:names:tc:xliff:document:1.2">
-    <attr format="reference" name="animate_relativeTo"/>
+    <attr format="enum" name="animateCircleAngleTo">
+        <enum name="bestChoice" value="0"/>
+        <enum name="closest" value="1"/>
+        <enum name="clockwise" value="2"/>
+        <enum name="antiClockwise" value="3"/>
+        <enum name="constraint" value="4"/>
+    </attr>
+    <attr format="reference" name="animateRelativeTo"/>
     <attr format="reference" name="appBarLayoutStyle"/>
     <attr format="enum" name="arcMode">
         <enum name="startVertical" value="0"/>
@@ -19,6 +26,8 @@
     </attr>
     <attr format="dimension" name="barrierMargin"/>
     <attr format="boolean" name="behavior_draggable"/>
+    <attr format="dimension" name="borderRound"/>
+    <attr format="float" name="borderRoundPercent"/>
     <attr format="reference" name="bottomAppBarStyle"/>
     <attr format="reference" name="bottomNavigationStyle"/>
     <attr format="reference" name="bottomSheetDialogTheme"/>
@@ -33,6 +42,11 @@
     <attr format="reference" name="chipStyle"/>
     <attr format="dimension" name="circleRadius"/>
     <attr format="reference" name="circularProgressIndicatorStyle"/>
+    <attr format="string" name="circularflow_angles"/>
+    <attr format="float" name="circularflow_defaultAngle"/>
+    <attr format="dimension" name="circularflow_defaultRadius"/>
+    <attr format="string" name="circularflow_radiusInDP"/>
+    <attr format="reference" name="circularflow_viewCenter"/>
     <attr format="reference" name="clockIcon"/>
     <attr format="reference" name="collapsingToolbarLayoutLargeSize"/>
     <attr format="reference" name="collapsingToolbarLayoutLargeStyle"/>
@@ -91,6 +105,7 @@
     <attr format="color" name="colorTertiaryFixedDim"/>
     <attr format="reference" name="constraintSet"/>
     <attr format="string" name="constraint_referenced_ids"/>
+    <attr format="string" name="constraint_referenced_tags"/>
     <attr format="reference" name="content"/>
     <attr format="reference" name="coordinatorLayoutStyle"/>
     <attr format="enum" name="curveFit">
@@ -109,6 +124,8 @@
         <enum name="dragRight" value="3"/>
         <enum name="dragStart" value="4"/>
         <enum name="dragEnd" value="5"/>
+        <enum name="dragClockwise" value="6"/>
+        <enum name="dragAnticlockwise" value="7"/>
     </attr>
     <attr format="enum" name="drawPath">
         <enum name="none" value="0"/>
@@ -160,7 +177,7 @@
         <enum name="spread_inside" value="1"/>
         <enum name="packed" value="2"/>
     </attr>
-    <attr format="float" name="flow_horizontalAlign">
+    <attr format="enum" name="flow_horizontalAlign">
         <enum name="start" value="0"/>
         <enum name="end" value="1"/>
         <enum name="center" value="2"/>
@@ -203,8 +220,10 @@
         <enum name="none" value="0"/>
         <enum name="chain" value="1"/>
         <enum name="aligned" value="2"/>
+        <enum name="chain2" value="3"/>
     </attr>
     <attr format="integer" name="framePosition"/>
+    <attr format="boolean" name="guidelineUseRtl"/>
     <attr format="reference" name="headerLayout"/>
     <attr format="dimension" name="height"/>
     <attr format="reference" name="hideMotionSpec"/>
@@ -222,11 +241,19 @@
     <attr format="enum" name="layoutDuringTransition">
         <enum name="ignoreRequest" value="0"/>
         <enum name="honorRequest" value="1"/>
+        <enum name="callMeasure" value="2"/>
+
     </attr>
     <attr format="boolean" name="layout_constrainedHeight"/>
     <attr format="boolean" name="layout_constrainedWidth"/>
     <attr format="integer" name="layout_constraintBaseline_creator"/>
     <attr format="reference|enum" name="layout_constraintBaseline_toBaselineOf">
+        <enum name="parent" value="0"/>
+    </attr>
+    <attr format="reference|enum" name="layout_constraintBaseline_toBottomOf">
+        <enum name="parent" value="0"/>
+    </attr>
+    <attr format="reference|enum" name="layout_constraintBaseline_toTopOf">
         <enum name="parent" value="0"/>
     </attr>
     <attr format="integer" name="layout_constraintBottom_creator"/>
@@ -237,7 +264,7 @@
         <enum name="parent" value="0"/>
     </attr>
     <attr format="reference" name="layout_constraintCircle"/>
-    <attr format="integer" name="layout_constraintCircleAngle"/>
+    <attr format="float" name="layout_constraintCircleAngle"/>
     <attr format="dimension" name="layout_constraintCircleRadius"/>
     <attr format="string" name="layout_constraintDimensionRatio"/>
     <attr format="reference|enum" name="layout_constraintEnd_toEndOf">
@@ -249,6 +276,12 @@
     <attr format="dimension" name="layout_constraintGuide_begin"/>
     <attr format="dimension" name="layout_constraintGuide_end"/>
     <attr format="float" name="layout_constraintGuide_percent"/>
+    <attr format="dimension|enum|string" name="layout_constraintHeight">
+        <enum name="match_parent" value="-1"/>
+        <enum name="wrap_content" value="-2"/>
+        <enum name="match_constraint" value="-3"/>
+        <enum name="wrap_content_constrained" value="-4"/>
+    </attr>
     <attr name="layout_constraintHeight_default">
         <enum name="spread" value="0"/>
         <enum name="wrap" value="1"/>
@@ -303,6 +336,12 @@
         <enum name="packed" value="2"/>
     </attr>
     <attr format="float" name="layout_constraintVertical_weight"/>
+    <attr format="dimension|enum|string" name="layout_constraintWidth">
+        <enum name="match_parent" value="-1"/>
+        <enum name="wrap_content" value="-2"/>
+        <enum name="match_constraint" value="-3"/>
+        <enum name="wrap_content_constrained" value="-4"/>
+    </attr>
     <attr name="layout_constraintWidth_default">
         <enum name="spread" value="0"/>
         <enum name="wrap" value="1"/>
@@ -317,15 +356,18 @@
     <attr format="float" name="layout_constraintWidth_percent"/>
     <attr format="dimension" name="layout_editor_absoluteX"/>
     <attr format="dimension" name="layout_editor_absoluteY"/>
+    <attr format="dimension" name="layout_goneMarginBaseline"/>
     <attr format="dimension" name="layout_goneMarginBottom"/>
     <attr format="dimension" name="layout_goneMarginEnd"/>
     <attr format="dimension" name="layout_goneMarginLeft"/>
     <attr format="dimension" name="layout_goneMarginRight"/>
     <attr format="dimension" name="layout_goneMarginStart"/>
     <attr format="dimension" name="layout_goneMarginTop"/>
+    <attr format="dimension" name="layout_marginBaseline"/>
     <attr name="layout_optimizationLevel">
         <flag name="none" value="0"/>
-        <flag name="standard" value="7"/> 
+        <flag name="legacy" value="0"/>
+        <flag name="standard" value="257"/> 
         <flag name="direct" value="1"/>
         <flag name="barrier" value="2"/>
         <flag name="chains" value="4"/>
@@ -334,6 +376,15 @@
         <flag name="groups" value="32"/>
         <flag name="graph" value="64"/>
         <flag name="graph_wrap" value="128"/>
+        <flag name="cache_measures" value="256"/>
+        <flag name="dependency_ordering" value="512"/>
+        <flag name="grouping" value="1024"/>
+    </attr>
+    <attr format="enum" name="layout_wrapBehaviorInParent">
+        <enum name="included" value="0"/>
+        <enum name="horizontal_only" value="1"/>
+        <enum name="vertical_only" value="2"/>
+        <enum name="skipped" value="3"/>
     </attr>
     <attr format="reference" name="linearProgressIndicatorStyle"/>
     <attr format="reference" name="materialButtonOutlinedStyle"/>
@@ -418,6 +469,13 @@
     <attr format="reference" name="navigationRailStyle"/>
     <attr format="reference" name="navigationViewStyle"/>
     <attr format="reference" name="nestedScrollViewStyle"/>
+    <attr format="enum" name="onStateTransition">
+        <enum name="actionDown" value="1"/>
+        <enum name="actionUp" value="2"/>
+        <enum name="actionDownUp" value="3"/>
+        <enum name="sharedValueSet" value="4"/>
+        <enum name="sharedValueUnset" value="5"/>
+    </attr>
     <attr format="enum" name="pathMotionArc">
         <enum name="none" value="0"/>
         <enum name="startVertical" value="1"/>
@@ -434,7 +492,18 @@
         <enum name="invisible" value="4"/>
         <enum name="gone" value="8"/>
     </attr>
+    <attr format="reference" name="polarRelativeTo"/>
     <attr format="reference" name="popupMenuBackground"/>
+    <attr format="string|reference|enum" name="quantizeMotionInterpolator">
+        <enum name="easeInOut" value="0"/>
+        <enum name="easeIn" value="1"/>
+        <enum name="easeOut" value="2"/>
+        <enum name="linear" value="3"/>
+        <enum name="bounce" value="4"/>
+        <enum name="overshoot" value="5"/>
+    </attr>
+    <attr format="float" name="quantizeMotionPhase"/>
+    <attr format="integer" name="quantizeMotionSteps"/>
     <attr format="reference" name="recyclerViewStyle"/>
     <attr format="color" name="rippleColor"/>
     <attr format="color|reference" name="scrimBackground"/>
@@ -499,6 +568,8 @@
     <attr format="reference" name="textInputOutlinedExposedDropdownMenuStyle"/>
     <attr format="reference" name="textInputOutlinedStyle"/>
     <attr format="reference" name="textInputStyle"/>
+    <attr format="color" name="textOutlineColor"/>
+    <attr format="dimension" name="textOutlineThickness"/>
     <attr format="string" name="title"/>
     <attr format="reference" name="toolbarSurfaceStyle"/>
     <attr format="reference" name="tooltipStyle"/>
@@ -513,6 +584,8 @@
         <enum name="end" value="6"/>
     </attr>
     <attr format="color" name="trackColor"/>
+    <attr format="reference" name="transformPivotTarget"/>
+    <attr format="boolean" name="transitionDisable"/>
     <attr format="string|enum" name="transitionEasing">
         <enum name="standard" value="0"/>
         <enum name="accelerate" value="1"/>
@@ -522,6 +595,12 @@
     <attr format="float" name="transitionPathRotate"/>
     <attr format="reference" name="transitionShapeAppearance"/>
     <attr format="boolean" name="useMaterialThemeColors"/>
+    <attr format="enum" name="viewTransitionMode">
+        <enum name="currentState" value="0"/>
+        <enum name="allStates" value="1"/>
+        
+        <enum name="noState" value="2"/>
+    </attr>
     <attr format="enum" name="visibilityMode">
         <enum name="normal" value="0"/>
         <enum name="ignore" value="1"/>
@@ -529,7 +608,8 @@
     <attr format="integer" name="waveDecay"/>
     <attr format="float|dimension" name="waveOffset"/>
     <attr format="float" name="wavePeriod"/>
-    <attr format="enum" name="waveShape">
+    <attr format="float" name="wavePhase"/>
+    <attr format="enum|string" name="waveShape">
         <enum name="sin" value="0"/>
         <enum name="square" value="1"/>
         <enum name="triangle" value="2"/>
@@ -630,29 +710,29 @@
     <color name="m3_ref_palette_error95">#fffceeee</color>
     <color name="m3_ref_palette_error99">#fffffbf9</color>
     <color name="m3_ref_palette_neutral0">#ff000000</color>
-    <color name="m3_ref_palette_neutral10">#ff1c1b1f</color>
+    <color name="m3_ref_palette_neutral10">#ff1d1b20</color>
     <color name="m3_ref_palette_neutral100">#ffffffff</color>
-    <color name="m3_ref_palette_neutral12">#ff201f23</color>
-    <color name="m3_ref_palette_neutral17">#ff2b292d</color>
-    <color name="m3_ref_palette_neutral20">#ff313033</color>
-    <color name="m3_ref_palette_neutral22">#ff313033</color>
-    <color name="m3_ref_palette_neutral24">#ff313033</color>
-    <color name="m3_ref_palette_neutral30">#ff484649</color>
-    <color name="m3_ref_palette_neutral4">#ff0e0e11</color>
-    <color name="m3_ref_palette_neutral40">#ff605d62</color>
-    <color name="m3_ref_palette_neutral50">#ff787579</color>
-    <color name="m3_ref_palette_neutral6">#ff141317</color>
-    <color name="m3_ref_palette_neutral60">#ff939094</color>
-    <color name="m3_ref_palette_neutral70">#ffaeaaae</color>
-    <color name="m3_ref_palette_neutral80">#ffc9c5ca</color>
-    <color name="m3_ref_palette_neutral87">#ffddd8dd</color>
-    <color name="m3_ref_palette_neutral90">#ffe6e1e5</color>
-    <color name="m3_ref_palette_neutral92">#ffece7ec</color>
-    <color name="m3_ref_palette_neutral94">#fff1ecf1</color>
-    <color name="m3_ref_palette_neutral95">#fff4eff4</color>
-    <color name="m3_ref_palette_neutral96">#fff7f2f7</color>
-    <color name="m3_ref_palette_neutral98">#fffdf8fd</color>
-    <color name="m3_ref_palette_neutral99">#fffffbfe</color>
+    <color name="m3_ref_palette_neutral12">#ff211f26</color>
+    <color name="m3_ref_palette_neutral17">#ff2b2930</color>
+    <color name="m3_ref_palette_neutral20">#ff322f35</color>
+    <color name="m3_ref_palette_neutral22">#ff36343b</color>
+    <color name="m3_ref_palette_neutral24">#ff3b383e</color>
+    <color name="m3_ref_palette_neutral30">#ff48464c</color>
+    <color name="m3_ref_palette_neutral4">#ff0f0d13</color>
+    <color name="m3_ref_palette_neutral40">#ff605d64</color>
+    <color name="m3_ref_palette_neutral50">#ff79767d</color>
+    <color name="m3_ref_palette_neutral6">#ff141218</color>
+    <color name="m3_ref_palette_neutral60">#ff938f96</color>
+    <color name="m3_ref_palette_neutral70">#ffaea9b1</color>
+    <color name="m3_ref_palette_neutral80">#ffcac5cd</color>
+    <color name="m3_ref_palette_neutral87">#ffded8e1</color>
+    <color name="m3_ref_palette_neutral90">#ffe6e0e9</color>
+    <color name="m3_ref_palette_neutral92">#ffece6f0</color>
+    <color name="m3_ref_palette_neutral94">#fff3edf7</color>
+    <color name="m3_ref_palette_neutral95">#fff5eff7</color>
+    <color name="m3_ref_palette_neutral96">#fff7f2fa</color>
+    <color name="m3_ref_palette_neutral98">#fffef7ff</color>
+    <color name="m3_ref_palette_neutral99">#fffffbff</color>
     <color name="m3_ref_palette_neutral_variant0">#ff000000</color>
     <color name="m3_ref_palette_neutral_variant10">#ff1d1a22</color>
     <color name="m3_ref_palette_neutral_variant100">#ffffffff</color>
@@ -706,7 +786,7 @@
     <color name="m3_ref_palette_tertiary95">#ffffecf1</color>
     <color name="m3_ref_palette_tertiary99">#fffffbfa</color>
     <color name="m3_ref_palette_white">#ffffffff</color>
-    <color name="m3_sys_color_dark_background">@color/m3_ref_palette_neutral10</color>
+    <color name="m3_sys_color_dark_background">@color/m3_ref_palette_neutral6</color>
     <color name="m3_sys_color_dark_error">@color/m3_ref_palette_error80</color>
     <color name="m3_sys_color_dark_error_container">@color/m3_ref_palette_error30</color>
     <color name="m3_sys_color_dark_inverse_on_surface">@color/m3_ref_palette_neutral20</color>
@@ -729,7 +809,7 @@
     <color name="m3_sys_color_dark_primary_container">@color/m3_ref_palette_primary30</color>
     <color name="m3_sys_color_dark_secondary">@color/m3_ref_palette_secondary80</color>
     <color name="m3_sys_color_dark_secondary_container">@color/m3_ref_palette_secondary30</color>
-    <color name="m3_sys_color_dark_surface">@color/m3_ref_palette_neutral10</color>
+    <color name="m3_sys_color_dark_surface">@color/m3_ref_palette_neutral6</color>
     <color name="m3_sys_color_dark_surface_bright">@color/m3_ref_palette_neutral24</color>
     <color name="m3_sys_color_dark_surface_container">@color/m3_ref_palette_neutral12</color>
     <color name="m3_sys_color_dark_surface_container_high">@color/m3_ref_palette_neutral17</color>
@@ -740,7 +820,7 @@
     <color name="m3_sys_color_dark_surface_variant">@color/m3_ref_palette_neutral_variant30</color>
     <color name="m3_sys_color_dark_tertiary">@color/m3_ref_palette_tertiary80</color>
     <color name="m3_sys_color_dark_tertiary_container">@color/m3_ref_palette_tertiary30</color>
-    <color name="m3_sys_color_light_background">@color/m3_ref_palette_neutral99</color>
+    <color name="m3_sys_color_light_background">@color/m3_ref_palette_neutral98</color>
     <color name="m3_sys_color_light_error">@color/m3_ref_palette_error40</color>
     <color name="m3_sys_color_light_error_container">@color/m3_ref_palette_error90</color>
     <color name="m3_sys_color_light_inverse_on_surface">@color/m3_ref_palette_neutral95</color>
@@ -763,7 +843,7 @@
     <color name="m3_sys_color_light_primary_container">@color/m3_ref_palette_primary90</color>
     <color name="m3_sys_color_light_secondary">@color/m3_ref_palette_secondary40</color>
     <color name="m3_sys_color_light_secondary_container">@color/m3_ref_palette_secondary90</color>
-    <color name="m3_sys_color_light_surface">@color/m3_ref_palette_neutral99</color>
+    <color name="m3_sys_color_light_surface">@color/m3_ref_palette_neutral98</color>
     <color name="m3_sys_color_light_surface_bright">@color/m3_ref_palette_neutral98</color>
     <color name="m3_sys_color_light_surface_container">@color/m3_ref_palette_neutral94</color>
     <color name="m3_sys_color_light_surface_container_high">@color/m3_ref_palette_neutral92</color>
@@ -1314,6 +1394,7 @@
     <dimen name="m3_large_fab_size">96dp</dimen>
     <dimen name="m3_large_text_vertical_offset_adjustment">4dp</dimen>
     <dimen name="m3_menu_elevation">@dimen/m3_comp_menu_container_elevation</dimen>
+    <dimen name="m3_nav_badge_with_text_vertical_offset">14dp</dimen>
     <dimen name="m3_navigation_drawer_layout_corner_size">16dp</dimen>
     <dimen name="m3_navigation_item_active_indicator_label_padding">4dp</dimen>
     <dimen name="m3_navigation_item_horizontal_padding">28dp</dimen>
@@ -1407,9 +1488,9 @@
     <item format="float" name="m3_sys_motion_easing_standard_decelerate_control_y1" type="dimen">0</item>
     <item format="float" name="m3_sys_motion_easing_standard_decelerate_control_y2" type="dimen">1</item>
     <item format="float" name="m3_sys_state_dragged_state_layer_opacity" type="dimen">0.16</item>
-    <item format="float" name="m3_sys_state_focus_state_layer_opacity" type="dimen">0.12</item>
+    <item format="float" name="m3_sys_state_focus_state_layer_opacity" type="dimen">0.10</item>
     <item format="float" name="m3_sys_state_hover_state_layer_opacity" type="dimen">0.08</item>
-    <item format="float" name="m3_sys_state_pressed_state_layer_opacity" type="dimen">0.12</item>
+    <item format="float" name="m3_sys_state_pressed_state_layer_opacity" type="dimen">0.10</item>
     <dimen name="m3_timepicker_display_stroke_width">2dp</dimen>
     <dimen name="m3_timepicker_window_elevation">@dimen/m3_comp_time_picker_container_elevation</dimen>
     <dimen name="m3_toolbar_text_size_title">20dp</dimen>
@@ -1417,6 +1498,7 @@
     <dimen name="material_clock_display_height">80dp</dimen>
     <dimen name="material_clock_display_padding">24dp</dimen>
     <dimen name="material_clock_display_width">96dp</dimen>
+    <dimen name="material_clock_face_margin_bottom">24dp</dimen>
     <dimen name="material_clock_face_margin_top">44dp</dimen>
     <dimen name="material_clock_hand_center_dot_radius">4dp</dimen>
     <dimen name="material_clock_hand_padding">4dp</dimen>
@@ -1449,7 +1531,6 @@
     <dimen name="material_textinput_min_width">56dp</dimen>
     <dimen name="material_time_picker_minimum_screen_height">560dp</dimen>
     <dimen name="material_time_picker_minimum_screen_width">340dp</dimen>
-    <dimen name="material_timepicker_dialog_buttons_margin_top">24dp</dimen>
     <dimen name="mtrl_alert_dialog_background_inset_bottom">80dp</dimen>
     <dimen name="mtrl_alert_dialog_background_inset_end">24dp</dimen>
     <dimen name="mtrl_alert_dialog_background_inset_start">24dp</dimen>
@@ -1776,6 +1857,7 @@
     <item name="transition_transform" type="id"/>
     <item name="up" type="id"/>
     <item name="view_offset_helper" type="id"/>
+    <item name="view_transition" type="id"/>
     <id name="view_tree_lifecycle_owner"/>
     <id name="view_tree_on_back_pressed_dispatcher_owner"/>
     <id name="view_tree_saved_state_registry_owner"/>
@@ -1972,7 +2054,7 @@
     <string description="A single date [CHAR_LIMIT=60]" name="mtrl_picker_date_header_selected">%1$s</string>
     <string description="Indicates that the user must take the action of picking a date within the calendar [CHAR_LIMIT=60]" name="mtrl_picker_date_header_title">Select Date</string>
     <string description="Placeholder for a single date [CHAR_LIMIT=60]" name="mtrl_picker_date_header_unselected">Selected date</string>
-    <string description="a11y string to indicate this is a header for a column of days for one day of the week (e.g., Monday) [CHAR_LIMIT=NONE]" name="mtrl_picker_day_of_week_column_header">Column of days: %1$s</string>
+    <string description="a11y string to indicate this is a header for a column of days for one day of the week (e.g., Monday) [CHAR_LIMIT=NONE]" name="mtrl_picker_day_of_week_column_header">%1$s</string>
     <string description="a11y string that informs the user that the focused day is the end of a range [CHAR_LIMIT=NONE]" name="mtrl_picker_end_date_description">End date %1$s</string>
     <string description="Indicates that the user entered date cannot be parsed because its format is wrong. [CHAR_LIMIT=36]" name="mtrl_picker_invalid_format">Invalid format.</string>
     <string description="Tells a user what an example valid entry looks like. [CHAR_LIMIT=18]" name="mtrl_picker_invalid_format_example">Example: %1$s</string>
@@ -5069,15 +5151,15 @@
     <style name="Base.Widget.Material3.ActionBar.Solid" parent="Widget.AppCompat.ActionBar.Solid">
     <item name="titleTextStyle">@style/TextAppearance.Material3.ActionBar.Title</item>
     <item name="subtitleTextStyle">@style/TextAppearance.Material3.ActionBar.Subtitle</item>
-    <item name="background">@macro/m3_comp_top_app_bar_small_container_color</item>
-    <item name="backgroundStacked">@macro/m3_comp_top_app_bar_small_container_color</item>
-    <item name="backgroundSplit">@macro/m3_comp_top_app_bar_small_container_color</item>
+    <item name="background">@macro/m3_comp_top_app_bar_small_on_scroll_container_color</item>
+    <item name="backgroundStacked">@macro/m3_comp_top_app_bar_small_on_scroll_container_color</item>
+    <item name="backgroundSplit">@macro/m3_comp_top_app_bar_small_on_scroll_container_color</item>
   </style>
     <style name="Base.Widget.Material3.ActionMode" parent="Widget.AppCompat.ActionMode">
     <item name="titleTextStyle">@style/TextAppearance.Material3.ActionBar.Title</item>
     <item name="subtitleTextStyle">@style/TextAppearance.Material3.ActionBar.Subtitle</item>
-    <item name="background">@macro/m3_comp_top_app_bar_small_container_color</item>
-    <item name="backgroundSplit">@macro/m3_comp_top_app_bar_small_container_color</item>
+    <item name="background">@macro/m3_comp_top_app_bar_small_on_scroll_container_color</item>
+    <item name="backgroundSplit">@macro/m3_comp_top_app_bar_small_on_scroll_container_color</item>
   </style>
     <style name="Base.Widget.Material3.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
     <item name="android:background">@macro/m3_comp_navigation_bar_container_color</item>
@@ -5232,9 +5314,9 @@
     <style name="Base.Widget.Material3.Light.ActionBar.Solid" parent="Widget.AppCompat.Light.ActionBar.Solid">
     <item name="titleTextStyle">@style/TextAppearance.Material3.ActionBar.Title</item>
     <item name="subtitleTextStyle">@style/TextAppearance.Material3.ActionBar.Subtitle</item>
-    <item name="background">@macro/m3_comp_top_app_bar_small_container_color</item>
-    <item name="backgroundStacked">@macro/m3_comp_top_app_bar_small_container_color</item>
-    <item name="backgroundSplit">@macro/m3_comp_top_app_bar_small_container_color</item>
+    <item name="background">@macro/m3_comp_top_app_bar_small_on_scroll_container_color</item>
+    <item name="backgroundStacked">@macro/m3_comp_top_app_bar_small_on_scroll_container_color</item>
+    <item name="backgroundSplit">@macro/m3_comp_top_app_bar_small_on_scroll_container_color</item>
   </style>
     <style name="Base.Widget.Material3.MaterialCalendar.NavigationButton" parent="Widget.Material3.Button.TextButton.Dialog.Flush">
     <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
@@ -6466,7 +6548,7 @@
     <item name="actionMenuTextColor">?attr/colorOnSurface</item>
   </style>
     <style name="ThemeOverlay.Material3.BottomNavigationView" parent="">
-    <item name="badgeStyle">@style/Widget.Material3.Badge.AdjustToBounds</item>
+    <item name="badgeStyle">@style/Widget.Material3.BottomNavigation.Badge</item>
   </style>
     <style name="ThemeOverlay.Material3.BottomSheetDialog" parent="Base.ThemeOverlay.Material3.BottomSheetDialog"/>
     <style name="ThemeOverlay.Material3.Button" parent="">
@@ -7203,6 +7285,7 @@
     <style name="Widget.Material3.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Surface">
     <item name="liftOnScroll">true</item>
     <item name="android:background">@macro/m3_comp_top_app_bar_small_container_color</item>
+    <item name="liftOnScrollColor">@macro/m3_comp_top_app_bar_small_on_scroll_container_color</item>
     <item name="android:stateListAnimator" ns1:ignore="NewApi">
       @animator/m3_appbar_state_list_animator
     </item>
@@ -7213,30 +7296,34 @@
   </style>
     <style name="Widget.Material3.AutoCompleteTextView.FilledBox" parent="Widget.MaterialComponents.AutoCompleteTextView.FilledBox">
     <item name="android:textAppearance">@macro/m3_comp_filled_autocomplete_text_field_input_text_type</item>
-    <item name="simpleItemSelectedColor">@macro/m3_comp_filled_autocomplete_menu_list_item_selected_container_color</item>
+    <item name="simpleItemSelectedColor">@macro/m3_comp_menu_list_item_selected_container_color</item>
     <item name="simpleItemSelectedRippleColor">@color/m3_simple_item_ripple_color</item>
     <item name="simpleItemLayout">@layout/m3_auto_complete_simple_item</item>
+    <item name="dropDownBackgroundTint">@macro/m3_comp_filled_autocomplete_menu_container_color</item>
     <item name="android:popupElevation" ns1:ignore="NewApi">@dimen/m3_comp_filled_autocomplete_menu_container_elevation</item>
   </style>
     <style name="Widget.Material3.AutoCompleteTextView.FilledBox.Dense" parent="Widget.MaterialComponents.AutoCompleteTextView.FilledBox.Dense">
     <item name="android:textAppearance">@macro/m3_comp_filled_autocomplete_text_field_input_text_type</item>
-    <item name="simpleItemSelectedColor">@macro/m3_comp_filled_autocomplete_menu_list_item_selected_container_color</item>
+    <item name="simpleItemSelectedColor">@macro/m3_comp_menu_list_item_selected_container_color</item>
     <item name="simpleItemSelectedRippleColor">@color/m3_simple_item_ripple_color</item>
     <item name="simpleItemLayout">@layout/m3_auto_complete_simple_item</item>
+    <item name="dropDownBackgroundTint">@macro/m3_comp_filled_autocomplete_menu_container_color</item>
     <item name="android:popupElevation" ns1:ignore="NewApi">@dimen/m3_comp_filled_autocomplete_menu_container_elevation</item>
   </style>
     <style name="Widget.Material3.AutoCompleteTextView.OutlinedBox" parent="Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox">
     <item name="android:textAppearance">@macro/m3_comp_outlined_autocomplete_text_field_input_text_type</item>
-    <item name="simpleItemSelectedColor">@macro/m3_comp_outlined_autocomplete_menu_list_item_selected_container_color</item>
+    <item name="simpleItemSelectedColor">@macro/m3_comp_menu_list_item_selected_container_color</item>
     <item name="simpleItemSelectedRippleColor">@color/m3_simple_item_ripple_color</item>
     <item name="simpleItemLayout">@layout/m3_auto_complete_simple_item</item>
+    <item name="dropDownBackgroundTint">@macro/m3_comp_outlined_autocomplete_menu_container_color</item>
     <item name="android:popupElevation" ns1:ignore="NewApi">@dimen/m3_comp_outlined_autocomplete_menu_container_elevation</item>
   </style>
     <style name="Widget.Material3.AutoCompleteTextView.OutlinedBox.Dense" parent="Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox.Dense">
     <item name="android:textAppearance">@macro/m3_comp_outlined_autocomplete_text_field_input_text_type</item>
-    <item name="simpleItemSelectedColor">@macro/m3_comp_outlined_autocomplete_menu_list_item_selected_container_color</item>
+    <item name="simpleItemSelectedColor">@macro/m3_comp_menu_list_item_selected_container_color</item>
     <item name="simpleItemSelectedRippleColor">@color/m3_simple_item_ripple_color</item>
     <item name="simpleItemLayout">@layout/m3_auto_complete_simple_item</item>
+    <item name="dropDownBackgroundTint">@macro/m3_comp_outlined_autocomplete_menu_container_color</item>
     <item name="android:popupElevation" ns1:ignore="NewApi">@dimen/m3_comp_outlined_autocomplete_menu_container_elevation</item>
   </style>
     <style name="Widget.Material3.Badge" parent="Widget.MaterialComponents.Badge">
@@ -7313,6 +7400,9 @@
     <item name="backgroundTint">@macro/m3_comp_bottom_app_bar_container_color</item>
     <item name="navigationIconTint">?attr/colorOnSurfaceVariant</item>
     <item name="materialThemeOverlay">@style/ThemeOverlay.Material3.BottomAppBar.Legacy</item>
+  </style>
+    <style name="Widget.Material3.BottomNavigation.Badge" parent="Widget.Material3.Badge.AdjustToBounds">
+    <item name="verticalOffsetWithText">@dimen/m3_nav_badge_with_text_vertical_offset</item>
   </style>
     <style name="Widget.Material3.BottomNavigationView" parent="Base.Widget.Material3.BottomNavigationView">
     <item name="compatShadowEnabled">false</item>
@@ -7975,9 +8065,10 @@
   </style>
     <style name="Widget.Material3.NavigationRailView.Badge" parent="Widget.Material3.Badge.AdjustToBounds">
     <item name="largeFontVerticalOffsetAdjustment">@dimen/m3_large_text_vertical_offset_adjustment</item>
+    <item name="verticalOffsetWithText">@dimen/m3_nav_badge_with_text_vertical_offset</item>
   </style>
     <style name="Widget.Material3.NavigationView" parent="Widget.MaterialComponents.NavigationView">
-    <item name="android:background">@macro/m3_comp_navigation_drawer_container_color</item>
+    <item name="android:background">@macro/m3_comp_navigation_drawer_modal_container_color</item>
     <item name="android:maxWidth">@dimen/m3_comp_navigation_drawer_container_width</item>
     <item name="subheaderColor">@macro/m3_comp_navigation_drawer_headline_color</item>
     <item name="subheaderTextAppearance">@macro/m3_comp_navigation_drawer_headline_type</item>
@@ -8078,7 +8169,7 @@
   </style>
     <style name="Widget.Material3.SideSheet" parent="">
     <item name="enforceMaterialTheme">true</item>
-    <item name="backgroundTint">@macro/m3_comp_sheet_side_docked_container_color</item>
+    <item name="backgroundTint">@macro/m3_comp_sheet_side_docked_standard_container_color</item>
     
     <item name="android:layout_gravity">end</item>
     <item name="android:elevation" ns1:ignore="NewApi">@dimen/m3_side_sheet_standard_elevation</item>
@@ -8091,6 +8182,7 @@
   </style>
     <style name="Widget.Material3.SideSheet.Modal">
     <item name="android:elevation" ns1:ignore="NewApi">@dimen/m3_side_sheet_modal_elevation</item>
+    <item name="backgroundTint">@macro/m3_comp_sheet_side_docked_modal_container_color</item>
     <item name="shapeAppearance">@macro/m3_comp_sheet_side_docked_modal_container_shape</item>
   </style>
     <style name="Widget.Material3.SideSheet.Modal.Detached">
@@ -10046,6 +10138,18 @@
         
         <attr name="android:minHeight"/>
     </declare-styleable>
+    <declare-styleable name="Carousel"><attr format="reference" name="carousel_firstView"/><attr format="reference" name="carousel_previousState"/><attr format="reference" name="carousel_nextState"/><attr format="boolean" name="carousel_infinite"/><attr format="reference" name="carousel_forwardTransition"/><attr format="reference" name="carousel_backwardTransition"/><attr format="float" name="carousel_touchUp_dampeningFactor"/><attr format="enum" name="carousel_touchUpMode">
+            <enum name="immediateStop" value="1"/>
+            <enum name="carryVelocity" value="2"/>
+        </attr><attr format="float" name="carousel_touchUp_velocityThreshold"/><attr format="enum" name="carousel_emptyViewsBehavior">
+            <enum name="invisible" value="4"/>
+            <enum name="gone" value="8"/>
+        </attr><attr name="carousel_alignment">
+    
+    <enum name="start" value="0"/>
+    
+    <enum name="center" value="1"/>
+  </attr></declare-styleable>
     <declare-styleable name="CheckedTextView">
         <attr name="android:checkMark"/>
         
@@ -10396,10 +10500,603 @@
             <enum name="add" value="16"/>
         </attr>
     </declare-styleable>
-    <declare-styleable name="Constraint"><attr name="android:orientation"/><attr name="android:id"/><attr name="android:visibility"/><attr name="visibilityMode"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="pivotAnchor"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="barrierMargin"/><attr name="constraint_referenced_ids"/><attr name="android:maxHeight"/><attr name="android:maxWidth"/><attr name="android:minHeight"/><attr name="android:minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/><attr name="flow_horizontalStyle"/><attr name="flow_verticalStyle"/><attr name="flow_verticalAlign"/><attr name="flow_horizontalAlign"/><attr name="flow_verticalBias"/><attr name="flow_horizontalBias"/><attr name="flow_wrapMode"/><attr name="flow_maxElementsWrap"/><attr name="flow_horizontalGap"/><attr name="flow_verticalGap"/><attr name="flow_firstHorizontalStyle"/><attr name="flow_firstVerticalStyle"/><attr name="flow_firstHorizontalBias"/><attr name="flow_firstVerticalBias"/><attr name="flow_lastHorizontalStyle"/><attr name="flow_lastVerticalStyle"/><attr name="flow_lastHorizontalBias"/><attr name="flow_lastVerticalBias"/><attr name="animate_relativeTo"/><attr name="transitionEasing"/><attr name="pathMotionArc"/><attr name="transitionPathRotate"/><attr name="drawPath"/><attr name="motionProgress"/><attr name="layout_constraintTag"/><attr name="motionStagger"/></declare-styleable>
-    <declare-styleable name="ConstraintLayout_Layout"><attr name="android:orientation"/><attr name="android:minWidth"/><attr name="android:minHeight"/><attr name="android:maxWidth"/><attr name="android:maxHeight"/><attr name="android:visibility"/><attr name="android:elevation"/><attr name="layout_optimizationLevel"/><attr name="layoutDescription"/><attr name="constraintSet"/><attr name="barrierDirection"/><attr name="barrierAllowsGoneWidgets"/><attr name="barrierMargin"/><attr name="constraint_referenced_ids"/><attr name="chainUseRtl"/><attr name="flow_horizontalStyle"/><attr name="flow_verticalStyle"/><attr name="flow_wrapMode"/><attr name="flow_maxElementsWrap"/><attr name="flow_horizontalGap"/><attr name="flow_verticalGap"/><attr name="android:padding"/><attr name="android:paddingTop"/><attr name="android:paddingBottom"/><attr name="android:paddingLeft"/><attr name="android:paddingRight"/><attr name="android:paddingStart"/><attr name="android:paddingEnd"/><attr name="flow_verticalAlign"/><attr name="flow_horizontalAlign"/><attr name="flow_verticalBias"/><attr name="flow_horizontalBias"/><attr name="flow_firstHorizontalStyle"/><attr name="flow_firstVerticalStyle"/><attr name="flow_firstHorizontalBias"/><attr name="flow_firstVerticalBias"/><attr name="flow_lastHorizontalStyle"/><attr name="flow_lastVerticalStyle"/><attr name="flow_lastHorizontalBias"/><attr name="flow_lastVerticalBias"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="layout_constraintTag"/></declare-styleable>
-    <declare-styleable name="ConstraintLayout_placeholder"><attr name="placeholder_emptyVisibility"/><attr name="content"/></declare-styleable>
-    <declare-styleable name="ConstraintSet"><attr format="reference" name="deriveConstraintsFrom"/><attr name="android:orientation"/><attr name="android:id"/><attr name="android:visibility"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="pivotAnchor"/><attr name="android:pivotX"/><attr name="android:pivotY"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="constraint_referenced_ids"/><attr name="barrierMargin"/><attr name="android:maxHeight"/><attr name="android:maxWidth"/><attr name="android:minHeight"/><attr name="android:minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/><attr name="flow_horizontalStyle"/><attr name="flow_verticalStyle"/><attr name="flow_verticalAlign"/><attr name="flow_horizontalAlign"/><attr name="flow_verticalBias"/><attr name="flow_horizontalBias"/><attr name="flow_wrapMode"/><attr name="flow_maxElementsWrap"/><attr name="flow_horizontalGap"/><attr name="flow_verticalGap"/><attr name="flow_firstHorizontalStyle"/><attr name="flow_firstVerticalStyle"/><attr name="flow_firstHorizontalBias"/><attr name="flow_firstVerticalBias"/><attr name="flow_lastHorizontalStyle"/><attr name="flow_lastVerticalStyle"/><attr name="flow_lastHorizontalBias"/><attr name="flow_lastVerticalBias"/><attr name="animate_relativeTo"/><attr name="transitionEasing"/><attr name="pathMotionArc"/><attr name="transitionPathRotate"/><attr name="motionStagger"/><attr name="drawPath"/><attr name="motionProgress"/><attr name="layout_constraintTag"/></declare-styleable>
+    <declare-styleable name="Constraint">
+        <attr name="android:orientation"/>
+        <attr name="android:id"/>
+
+        
+        <attr name="android:visibility"/>
+        <attr name="visibilityMode"/>
+
+        
+        <attr name="android:alpha"/>
+
+        
+        <attr name="android:elevation"/>
+
+        
+        <attr name="android:rotation"/>
+
+        
+        <attr name="android:rotationX"/>
+
+        
+        <attr name="android:rotationY"/>
+
+        
+        <attr name="android:scaleX"/>
+
+        
+        <attr name="android:scaleY"/>
+        <attr name="pivotAnchor"/>
+
+        <attr name="android:transformPivotX"/>
+        <attr name="android:transformPivotY"/>
+        <attr name="transformPivotTarget"/>
+
+        
+        <attr name="android:translationX"/>
+        
+        <attr name="android:translationY"/>
+        
+        <attr name="android:translationZ"/>
+        
+        <attr name="android:layout_width"/>
+        
+        <attr name="android:layout_height"/>
+        
+        <attr name="layout_constraintWidth"/>
+        <attr name="layout_constraintHeight"/>
+        <attr name="android:layout_marginStart"/>
+        
+        <attr name="android:layout_marginBottom"/>
+        
+        <attr name="android:layout_marginTop"/>
+        
+        <attr name="android:layout_marginEnd"/>
+        
+        <attr name="android:layout_marginLeft"/>
+        
+        <attr name="android:layout_marginRight"/>
+
+        <attr name="layout_constraintCircle"/>
+        <attr name="layout_constraintCircleRadius"/>
+        <attr name="layout_constraintCircleAngle"/>
+
+        <attr name="layout_constraintGuide_begin"/>
+        <attr name="layout_constraintGuide_end"/>
+        <attr name="layout_constraintGuide_percent"/>
+        <attr name="guidelineUseRtl"/>
+        <attr name="layout_constraintLeft_toLeftOf"/>
+        <attr name="layout_constraintLeft_toRightOf"/>
+        <attr name="layout_constraintRight_toLeftOf"/>
+        <attr name="layout_constraintRight_toRightOf"/>
+        <attr name="layout_constraintTop_toTopOf"/>
+        <attr name="layout_constraintTop_toBottomOf"/>
+        <attr name="layout_constraintBottom_toTopOf"/>
+        <attr name="layout_constraintBottom_toBottomOf"/>
+        <attr name="layout_constraintBaseline_toBaselineOf"/>
+        <attr name="layout_constraintBaseline_toTopOf"/>
+        <attr name="layout_constraintBaseline_toBottomOf"/>
+        <attr name="layout_constraintStart_toEndOf"/>
+        <attr name="layout_constraintStart_toStartOf"/>
+        <attr name="layout_constraintEnd_toStartOf"/>
+        <attr name="layout_constraintEnd_toEndOf"/>
+        <attr name="layout_goneMarginLeft"/>
+        <attr name="layout_goneMarginTop"/>
+        <attr name="layout_goneMarginRight"/>
+        <attr name="layout_goneMarginBottom"/>
+        <attr name="layout_goneMarginStart"/>
+        <attr name="layout_goneMarginEnd"/>
+        <attr name="layout_goneMarginBaseline"/>
+        <attr name="layout_marginBaseline"/>
+        <attr name="layout_constrainedWidth"/>
+        <attr name="layout_constrainedHeight"/>
+        <attr name="layout_constraintHorizontal_bias"/>
+        <attr name="layout_constraintVertical_bias"/>
+        <attr name="layout_constraintWidth_default"/>
+        <attr name="layout_constraintHeight_default"/>
+        <attr name="layout_constraintWidth_min"/>
+        <attr name="layout_constraintWidth_max"/>
+        <attr name="layout_constraintWidth_percent"/>
+        <attr name="layout_constraintHeight_min"/>
+        <attr name="layout_constraintHeight_max"/>
+        <attr name="layout_constraintHeight_percent"/>
+        <attr name="layout_constraintLeft_creator"/>
+        <attr name="layout_constraintTop_creator"/>
+        <attr name="layout_constraintRight_creator"/>
+        <attr name="layout_constraintBottom_creator"/>
+        <attr name="layout_constraintBaseline_creator"/>
+        <attr name="layout_constraintDimensionRatio"/>
+        <attr name="layout_constraintHorizontal_weight"/>
+        <attr name="layout_constraintVertical_weight"/>
+        <attr name="layout_constraintHorizontal_chainStyle"/>
+        <attr name="layout_constraintVertical_chainStyle"/>
+        <attr name="layout_editor_absoluteX"/>
+        <attr name="layout_editor_absoluteY"/>
+        <attr name="layout_wrapBehaviorInParent"/>
+
+        <attr name="barrierDirection"/>
+        <attr name="barrierMargin"/>
+        <attr name="constraint_referenced_ids"/>
+        <attr name="constraint_referenced_tags"/>
+
+        <attr name="android:maxHeight"/>
+        <attr name="android:maxWidth"/>
+        <attr name="android:minHeight"/>
+        <attr name="android:minWidth"/>
+        <attr name="barrierAllowsGoneWidgets"/>
+        <attr name="chainUseRtl"/>
+
+        <attr name="flow_horizontalStyle"/>
+        <attr name="flow_verticalStyle"/>
+        <attr name="flow_verticalAlign"/>
+        <attr name="flow_horizontalAlign"/>
+        <attr name="flow_verticalBias"/>
+        <attr name="flow_horizontalBias"/>
+        <attr name="flow_wrapMode"/>
+        <attr name="flow_maxElementsWrap"/>
+        <attr name="flow_horizontalGap"/>
+        <attr name="flow_verticalGap"/>
+        
+        
+
+        <attr name="flow_firstHorizontalStyle"/>
+        <attr name="flow_firstVerticalStyle"/>
+        <attr name="flow_firstHorizontalBias"/>
+        <attr name="flow_firstVerticalBias"/>
+
+        <attr name="flow_lastHorizontalStyle"/>
+        <attr name="flow_lastVerticalStyle"/>
+        <attr name="flow_lastHorizontalBias"/>
+        <attr name="flow_lastVerticalBias"/>
+
+        <attr name="animateRelativeTo"/>
+        <attr name="animateCircleAngleTo"/>
+        <attr name="transitionEasing"/>
+        <attr name="pathMotionArc"/>
+        <attr name="polarRelativeTo"/>
+        <attr name="transitionPathRotate"/>
+        <attr name="drawPath"/>
+        <attr name="motionProgress"/>
+        <attr name="layout_constraintTag"/>
+        <attr name="motionStagger"/>
+        <attr name="quantizeMotionSteps"/>
+        <attr name="quantizeMotionPhase"/>
+        <attr name="quantizeMotionInterpolator"/>
+    </declare-styleable>
+    <declare-styleable name="ConstraintLayout_Layout">
+        <attr name="android:orientation"/>
+        <attr name="android:minWidth"/>
+        <attr name="android:minHeight"/>
+        <attr name="android:maxWidth"/>
+        <attr name="android:maxHeight"/>
+        <attr name="android:visibility"/>
+        <attr name="android:elevation"/>
+
+        <attr name="layout_optimizationLevel"/>
+        <attr name="layoutDescription"/>
+
+        <attr name="constraintSet"/>
+        <attr name="barrierDirection"/>
+        <attr name="barrierAllowsGoneWidgets"/>
+        <attr name="barrierMargin"/>
+        <attr name="constraint_referenced_ids"/>
+        <attr name="constraint_referenced_tags"/>
+        <attr name="chainUseRtl"/>
+
+        <attr name="flow_horizontalStyle"/>
+        <attr name="flow_verticalStyle"/>
+        <attr name="flow_wrapMode"/>
+        <attr name="flow_maxElementsWrap"/>
+        <attr name="flow_horizontalGap"/>
+        <attr name="flow_verticalGap"/>
+        <attr name="android:padding"/>
+        <attr name="android:paddingTop"/>
+        <attr name="android:paddingBottom"/>
+        <attr name="android:paddingLeft"/>
+        <attr name="android:paddingRight"/>
+        <attr name="android:paddingStart"/>
+        <attr name="android:paddingEnd"/>
+        <attr name="flow_verticalAlign"/>
+        <attr name="flow_horizontalAlign"/>
+        <attr name="flow_verticalBias"/>
+        <attr name="flow_horizontalBias"/>
+        
+        
+
+        <attr name="flow_firstHorizontalStyle"/>
+        <attr name="flow_firstVerticalStyle"/>
+        <attr name="flow_firstHorizontalBias"/>
+        <attr name="flow_firstVerticalBias"/>
+
+        <attr name="flow_lastHorizontalStyle"/>
+        <attr name="flow_lastVerticalStyle"/>
+        <attr name="flow_lastHorizontalBias"/>
+        <attr name="flow_lastVerticalBias"/>
+
+        <attr name="circularflow_radiusInDP"/>
+        <attr name="circularflow_angles"/>
+        <attr name="circularflow_viewCenter"/>
+        <attr name="circularflow_defaultRadius"/>
+        <attr name="circularflow_defaultAngle"/>
+
+
+        <attr name="layout_constraintCircle"/>
+        <attr name="layout_constraintCircleRadius"/>
+        <attr name="layout_constraintCircleAngle"/>
+
+        <attr name="layout_constraintGuide_begin"/>
+        <attr name="layout_constraintGuide_end"/>
+        <attr name="layout_constraintGuide_percent"/>
+        <attr name="guidelineUseRtl"/>
+        <attr name="layout_constraintLeft_toLeftOf"/>
+        <attr name="layout_constraintLeft_toRightOf"/>
+        <attr name="layout_constraintRight_toLeftOf"/>
+        <attr name="layout_constraintRight_toRightOf"/>
+        <attr name="layout_constraintTop_toTopOf"/>
+        <attr name="layout_constraintTop_toBottomOf"/>
+        <attr name="layout_constraintBottom_toTopOf"/>
+        <attr name="layout_constraintBottom_toBottomOf"/>
+        <attr name="layout_constraintBaseline_toBaselineOf"/>
+        <attr name="layout_constraintBaseline_toTopOf"/>
+        <attr name="layout_constraintBaseline_toBottomOf"/>
+        <attr name="layout_constraintStart_toEndOf"/>
+        <attr name="layout_constraintStart_toStartOf"/>
+        <attr name="layout_constraintEnd_toStartOf"/>
+        <attr name="layout_constraintEnd_toEndOf"/>
+        <attr name="layout_goneMarginLeft"/>
+        <attr name="layout_goneMarginTop"/>
+        <attr name="layout_goneMarginRight"/>
+        <attr name="layout_goneMarginBottom"/>
+        <attr name="layout_goneMarginStart"/>
+        <attr name="layout_goneMarginEnd"/>
+        <attr name="layout_goneMarginBaseline"/>
+        <attr name="layout_marginBaseline"/>
+        <attr name="layout_constraintWidth"/>
+        <attr name="layout_constraintHeight"/>
+        <attr name="android:layout_width"/>
+        <attr name="android:layout_height"/>
+        <attr name="android:layout_margin"/>
+        <attr name="android:layout_marginHorizontal"/>
+        <attr name="android:layout_marginVertical"/>
+        <attr name="android:layout_marginLeft"/>
+        <attr name="android:layout_marginRight"/>
+        <attr name="android:layout_marginTop"/>
+        <attr name="android:layout_marginBottom"/>
+        <attr name="android:layout_marginStart"/>
+        <attr name="android:layout_marginEnd"/>
+        <attr name="layout_constrainedWidth"/>
+        <attr name="layout_constrainedHeight"/>
+        <attr name="layout_constraintHorizontal_bias"/>
+        <attr name="layout_constraintVertical_bias"/>
+        <attr name="layout_constraintWidth_default"/>
+        <attr name="layout_constraintHeight_default"/>
+        <attr name="layout_constraintWidth_min"/>
+        <attr name="layout_constraintWidth_max"/>
+        <attr name="layout_constraintWidth_percent"/>
+        <attr name="layout_constraintHeight_min"/>
+        <attr name="layout_constraintHeight_max"/>
+        <attr name="layout_constraintHeight_percent"/>
+        <attr name="layout_constraintLeft_creator"/>
+        <attr name="layout_constraintTop_creator"/>
+        <attr name="layout_constraintRight_creator"/>
+        <attr name="layout_constraintBottom_creator"/>
+        <attr name="layout_constraintBaseline_creator"/>
+        <attr name="layout_constraintDimensionRatio"/>
+        <attr name="layout_constraintHorizontal_weight"/>
+        <attr name="layout_constraintVertical_weight"/>
+        <attr name="layout_constraintHorizontal_chainStyle"/>
+        <attr name="layout_constraintVertical_chainStyle"/>
+        <attr name="layout_editor_absoluteX"/>
+        <attr name="layout_editor_absoluteY"/>
+        <attr name="layout_constraintTag"/>
+        <attr name="layout_wrapBehaviorInParent"/>
+    </declare-styleable>
+    <declare-styleable name="ConstraintLayout_ReactiveGuide">
+        <attr format="reference" name="reactiveGuide_valueId"/>
+        <attr format="boolean" name="reactiveGuide_animateChange"/>
+        <attr format="boolean" name="reactiveGuide_applyToAllConstraintSets"/>
+        <attr format="reference" name="reactiveGuide_applyToConstraintSet"/>
+    </declare-styleable>
+    <declare-styleable name="ConstraintLayout_placeholder">
+        <attr name="placeholder_emptyVisibility"/>
+        <attr name="content"/>
+    </declare-styleable>
+    <declare-styleable name="ConstraintOverride">
+        <attr name="android:orientation"/>
+        <attr name="android:id"/>
+        <attr name="motionTarget"/>
+
+        
+        <attr name="android:visibility"/>
+        <attr name="visibilityMode"/>
+
+        
+        <attr name="android:alpha"/>
+
+        
+        <attr name="android:elevation"/>
+
+        
+        <attr name="android:rotation"/>
+
+        
+        <attr name="android:rotationX"/>
+
+        
+        <attr name="android:rotationY"/>
+
+        
+        <attr name="android:scaleX"/>
+
+        
+        <attr name="android:scaleY"/>
+        <attr name="pivotAnchor"/>
+
+        <attr name="android:transformPivotX"/>
+        <attr name="android:transformPivotY"/>
+        <attr name="transformPivotTarget"/>
+
+        
+        <attr name="android:translationX"/>
+        
+        <attr name="android:translationY"/>
+        
+        <attr name="android:translationZ"/>
+        
+        <attr name="android:layout_width"/>
+        
+        <attr name="android:layout_height"/>
+        
+        <attr name="layout_constraintWidth"/>
+        <attr name="layout_constraintHeight"/>
+        <attr name="android:layout_marginStart"/>
+        
+        <attr name="android:layout_marginBottom"/>
+        
+        <attr name="android:layout_marginTop"/>
+        
+        <attr name="android:layout_marginEnd"/>
+        
+        <attr name="android:layout_marginLeft"/>
+        
+        <attr name="android:layout_marginRight"/>
+
+        <attr name="layout_constraintCircleRadius"/>
+        <attr name="layout_constraintCircleAngle"/>
+
+        <attr name="layout_constraintGuide_begin"/>
+        <attr name="layout_constraintGuide_end"/>
+        <attr name="layout_constraintGuide_percent"/>
+        <attr name="guidelineUseRtl"/>
+
+        <attr name="layout_goneMarginLeft"/>
+        <attr name="layout_goneMarginTop"/>
+        <attr name="layout_goneMarginRight"/>
+        <attr name="layout_goneMarginBottom"/>
+        <attr name="layout_goneMarginStart"/>
+        <attr name="layout_goneMarginEnd"/>
+        <attr name="layout_goneMarginBaseline"/>
+        <attr name="layout_marginBaseline"/>
+        <attr name="layout_constrainedWidth"/>
+        <attr name="layout_constrainedHeight"/>
+        <attr name="layout_constraintHorizontal_bias"/>
+        <attr name="layout_constraintVertical_bias"/>
+        <attr name="layout_constraintWidth_default"/>
+        <attr name="layout_constraintHeight_default"/>
+        <attr name="layout_constraintWidth_min"/>
+        <attr name="layout_constraintWidth_max"/>
+        <attr name="layout_constraintWidth_percent"/>
+        <attr name="layout_constraintHeight_min"/>
+        <attr name="layout_constraintHeight_max"/>
+        <attr name="layout_constraintHeight_percent"/>
+        <attr name="layout_constraintLeft_creator"/>
+        <attr name="layout_constraintTop_creator"/>
+        <attr name="layout_constraintRight_creator"/>
+        <attr name="layout_constraintBottom_creator"/>
+        <attr name="layout_constraintBaseline_creator"/>
+        <attr name="layout_constraintDimensionRatio"/>
+        <attr name="layout_constraintHorizontal_weight"/>
+        <attr name="layout_constraintVertical_weight"/>
+        <attr name="layout_constraintHorizontal_chainStyle"/>
+        <attr name="layout_constraintVertical_chainStyle"/>
+        <attr name="layout_editor_absoluteX"/>
+        <attr name="layout_editor_absoluteY"/>
+        <attr name="layout_wrapBehaviorInParent"/>
+
+        <attr name="barrierDirection"/>
+        <attr name="barrierMargin"/>
+        <attr name="constraint_referenced_ids"/>
+        <attr name="android:maxHeight"/>
+        <attr name="android:maxWidth"/>
+        <attr name="android:minHeight"/>
+        <attr name="android:minWidth"/>
+        <attr name="barrierAllowsGoneWidgets"/>
+        <attr name="chainUseRtl"/>
+
+        <attr name="flow_horizontalStyle"/>
+        <attr name="flow_verticalStyle"/>
+        <attr name="flow_verticalAlign"/>
+        <attr name="flow_horizontalAlign"/>
+        <attr name="flow_verticalBias"/>
+        <attr name="flow_horizontalBias"/>
+        <attr name="flow_wrapMode"/>
+        <attr name="flow_maxElementsWrap"/>
+        <attr name="flow_horizontalGap"/>
+        <attr name="flow_verticalGap"/>
+        
+        
+
+        <attr name="flow_firstHorizontalStyle"/>
+        <attr name="flow_firstVerticalStyle"/>
+        <attr name="flow_firstHorizontalBias"/>
+        <attr name="flow_firstVerticalBias"/>
+
+        <attr name="flow_lastHorizontalStyle"/>
+        <attr name="flow_lastVerticalStyle"/>
+        <attr name="flow_lastHorizontalBias"/>
+        <attr name="flow_lastVerticalBias"/>
+
+        <attr name="animateRelativeTo"/>
+        <attr name="animateCircleAngleTo"/>
+        <attr name="transitionEasing"/>
+        <attr name="pathMotionArc"/>
+        <attr name="polarRelativeTo"/>
+        <attr name="transitionPathRotate"/>
+        <attr name="drawPath"/>
+        <attr name="motionProgress"/>
+        <attr name="layout_constraintTag"/>
+        <attr name="motionStagger"/>
+        <attr name="quantizeMotionSteps"/>
+        <attr name="quantizeMotionPhase"/>
+        <attr name="quantizeMotionInterpolator"/>
+    </declare-styleable>
+    <declare-styleable name="ConstraintSet">
+        <attr format="reference" name="deriveConstraintsFrom"/>
+        <attr format="enum" name="constraintRotate">
+            <enum name="none" value="0"/>
+            <enum name="right" value="1"/>
+            <enum name="left" value="2"/>
+            <enum name="x_right" value="3"/>
+            <enum name="x_left" value="4"/>
+        </attr>
+        <attr name="android:orientation"/>
+        <attr name="android:id"/>
+        <attr name="android:visibility"/>
+        <attr name="android:alpha"/>
+        <attr name="android:elevation"/>
+        <attr name="android:rotation"/>
+        <attr name="android:rotationX"/>
+        <attr name="android:rotationY"/>
+        <attr name="android:scaleX"/>
+        <attr name="android:scaleY"/>
+        <attr name="pivotAnchor"/>
+        <attr name="android:pivotX"/>
+        <attr name="android:pivotY"/>
+        <attr name="android:transformPivotX"/>
+        <attr name="android:transformPivotY"/>
+        <attr name="android:translationX"/>
+        <attr name="android:translationY"/>
+        <attr name="android:translationZ"/>
+        <attr name="android:layout_width"/>
+        
+        <attr name="android:layout_height"/>
+        
+        <attr name="android:layout_marginStart"/>
+        
+        <attr name="android:layout_marginBottom"/>
+        <attr name="android:layout_marginTop"/>
+        <attr name="android:layout_marginEnd"/>
+        <attr name="android:layout_marginLeft"/>
+        <attr name="android:layout_marginRight"/>
+
+        <attr name="layout_constraintCircle"/>
+        <attr name="layout_constraintCircleRadius"/>
+        <attr name="layout_constraintCircleAngle"/>
+
+        <attr name="layout_constraintGuide_begin"/>
+        <attr name="layout_constraintGuide_end"/>
+        <attr name="layout_constraintGuide_percent"/>
+        <attr name="guidelineUseRtl"/>
+
+        <attr name="layout_constraintLeft_toLeftOf"/>
+        <attr name="layout_constraintLeft_toRightOf"/>
+        <attr name="layout_constraintRight_toLeftOf"/>
+        <attr name="layout_constraintRight_toRightOf"/>
+        <attr name="layout_constraintTop_toTopOf"/>
+        <attr name="layout_constraintTop_toBottomOf"/>
+        <attr name="layout_constraintBottom_toTopOf"/>
+        <attr name="layout_constraintBottom_toBottomOf"/>
+        <attr name="layout_constraintBaseline_toBaselineOf"/>
+        <attr name="layout_constraintBaseline_toTopOf"/>
+        <attr name="layout_constraintBaseline_toBottomOf"/>
+        <attr name="layout_constraintStart_toEndOf"/>
+        <attr name="layout_constraintStart_toStartOf"/>
+        <attr name="layout_constraintEnd_toStartOf"/>
+        <attr name="layout_constraintEnd_toEndOf"/>
+        <attr name="layout_goneMarginLeft"/>
+        <attr name="layout_goneMarginTop"/>
+        <attr name="layout_goneMarginRight"/>
+        <attr name="layout_goneMarginBottom"/>
+        <attr name="layout_goneMarginStart"/>
+        <attr name="layout_goneMarginEnd"/>
+        <attr name="layout_goneMarginBaseline"/>
+        <attr name="layout_marginBaseline"/>
+        <attr name="layout_constrainedWidth"/>
+        <attr name="layout_constrainedHeight"/>
+        <attr name="layout_constraintHorizontal_bias"/>
+        <attr name="layout_constraintVertical_bias"/>
+        <attr name="layout_constraintWidth_default"/>
+        <attr name="layout_constraintHeight_default"/>
+        <attr name="layout_constraintWidth_min"/>
+        <attr name="layout_constraintWidth_max"/>
+        <attr name="layout_constraintWidth_percent"/>
+        <attr name="layout_constraintHeight_min"/>
+        <attr name="layout_constraintHeight_max"/>
+        <attr name="layout_constraintHeight_percent"/>
+        <attr name="layout_constraintLeft_creator"/>
+        <attr name="layout_constraintTop_creator"/>
+        <attr name="layout_constraintRight_creator"/>
+        <attr name="layout_constraintBottom_creator"/>
+        <attr name="layout_constraintBaseline_creator"/>
+        <attr name="layout_constraintDimensionRatio"/>
+        <attr name="layout_constraintHorizontal_weight"/>
+        <attr name="layout_constraintVertical_weight"/>
+        <attr name="layout_constraintHorizontal_chainStyle"/>
+        <attr name="layout_constraintVertical_chainStyle"/>
+        <attr name="layout_editor_absoluteX"/>
+        <attr name="layout_editor_absoluteY"/>
+        <attr name="layout_wrapBehaviorInParent"/>
+
+        <attr name="barrierDirection"/>
+        <attr name="constraint_referenced_ids"/>
+        <attr name="constraint_referenced_tags"/>
+        <attr name="barrierMargin"/>
+        <attr name="android:maxHeight"/>
+        <attr name="android:maxWidth"/>
+        <attr name="android:minHeight"/>
+        <attr name="android:minWidth"/>
+        <attr name="barrierAllowsGoneWidgets"/>
+        <attr name="chainUseRtl"/>
+
+        <attr name="flow_horizontalStyle"/>
+        <attr name="flow_verticalStyle"/>
+        <attr name="flow_verticalAlign"/>
+        <attr name="flow_horizontalAlign"/>
+        <attr name="flow_verticalBias"/>
+        <attr name="flow_horizontalBias"/>
+        <attr name="flow_wrapMode"/>
+        <attr name="flow_maxElementsWrap"/>
+        <attr name="flow_horizontalGap"/>
+        <attr name="flow_verticalGap"/>
+        
+        
+
+        <attr name="flow_firstHorizontalStyle"/>
+        <attr name="flow_firstVerticalStyle"/>
+        <attr name="flow_firstHorizontalBias"/>
+        <attr name="flow_firstVerticalBias"/>
+
+        <attr name="flow_lastHorizontalStyle"/>
+        <attr name="flow_lastVerticalStyle"/>
+        <attr name="flow_lastHorizontalBias"/>
+        <attr name="flow_lastVerticalBias"/>
+
+        <attr name="animateRelativeTo"/>
+        <attr name="animateCircleAngleTo"/>
+
+        <attr name="transitionEasing"/>
+        <attr name="pathMotionArc"/>
+        <attr name="polarRelativeTo"/>
+        <attr name="transitionPathRotate"/>
+        <attr name="motionStagger"/>
+        <attr name="quantizeMotionSteps"/>
+        <attr name="drawPath"/>
+        <attr name="motionProgress"/>
+        <attr name="layout_constraintTag"/>
+
+    </declare-styleable>
     <declare-styleable name="CoordinatorLayout">
         
         <attr format="reference" name="keylines"/>
@@ -10490,7 +11187,19 @@
             <flag name="all" value="0x77"/>
         </attr>
     </declare-styleable>
-    <declare-styleable name="CustomAttribute"><attr format="string" name="attributeName"/><attr format="color" name="customColorValue"/><attr format="color" name="customColorDrawableValue"/><attr format="integer" name="customIntegerValue"/><attr format="float" name="customFloatValue"/><attr format="string" name="customStringValue"/><attr format="dimension" name="customDimension"/><attr format="dimension" name="customPixelDimension"/><attr format="boolean" name="customBoolean"/></declare-styleable>
+    <declare-styleable name="CustomAttribute">
+        <attr format="string" name="attributeName"/>
+        <attr format="string" name="methodName"/>
+        <attr format="color" name="customColorValue"/>
+        <attr format="color" name="customColorDrawableValue"/>
+        <attr format="integer" name="customIntegerValue"/>
+        <attr format="float" name="customFloatValue"/>
+        <attr format="string" name="customStringValue"/>
+        <attr format="dimension" name="customDimension"/>
+        <attr format="dimension" name="customPixelDimension"/>
+        <attr format="boolean" name="customBoolean"/>
+        <attr format="reference" name="customReference"/>
+    </declare-styleable>
     <declare-styleable name="DrawerArrowToggle">
         
         <attr format="color" name="color"/>
@@ -10704,7 +11413,22 @@
         
         <attr name="android:color"/>
     </declare-styleable>
-    <declare-styleable name="ImageFilterView"><attr format="reference" name="altSrc"/><attr format="float" name="saturation"/><attr format="float" name="brightness"/><attr format="float" name="warmth"/><attr format="float" name="contrast"/><attr format="float" name="crossfade"/><attr format="dimension" name="round"/><attr format="boolean" name="overlay"/><attr format="float" name="roundPercent"/></declare-styleable>
+    <declare-styleable name="ImageFilterView">
+        <attr format="reference" name="blendSrc"/>
+        <attr format="reference" name="altSrc"/>
+        <attr format="float" name="saturation"/>
+        <attr format="float" name="brightness"/>
+        <attr format="float" name="warmth"/>
+        <attr format="float" name="contrast"/>
+        <attr format="float" name="crossfade"/>
+        <attr format="dimension" name="round"/>
+        <attr format="boolean" name="overlay"/>
+        <attr format="float" name="roundPercent"/>
+        <attr format="float" name="imagePanX"/>
+        <attr format="float" name="imagePanY"/>
+        <attr format="float" name="imageZoom"/>
+        <attr format="float" name="imageRotate"/>
+    </declare-styleable>
     <declare-styleable name="Insets">
     
     <attr format="boolean" name="paddingBottomSystemWindowInsets"/>
@@ -10716,19 +11440,220 @@
     <attr format="boolean" name="marginRightSystemWindowInsets"/>
     <attr format="boolean" name="marginTopSystemWindowInsets"/>
   </declare-styleable>
-    <declare-styleable name="KeyAttribute"><attr name="framePosition"/><attr name="motionTarget"/><attr name="transitionEasing"/><attr name="curveFit"/><attr name="motionProgress"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr name="transitionPathRotate"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/></declare-styleable>
-    <declare-styleable name="KeyCycle"><attr name="motionTarget"/><attr name="curveFit"/><attr name="framePosition"/><attr name="transitionEasing"/><attr name="motionProgress"/><attr name="waveShape"/><attr name="wavePeriod"/><attr name="waveOffset"/><attr name="waveVariesBy"/><attr name="transitionPathRotate"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/></declare-styleable>
-    <declare-styleable name="KeyFrame"/>
-    <declare-styleable name="KeyFramesAcceleration"/>
-    <declare-styleable name="KeyFramesVelocity"/>
-    <declare-styleable name="KeyPosition"><attr format="enum" name="keyPositionType">
+    <declare-styleable name="KeyAttribute">
+        <attr name="framePosition"/>
+        <attr name="motionTarget"/>
+        <attr name="transitionEasing"/>
+        <attr name="curveFit"/>
+
+        <attr name="motionProgress"/>
+
+        
+        <attr name="android:alpha"/>
+        <attr name="android:elevation"/>
+        <attr name="android:rotation"/>
+        <attr name="android:rotationX"/>
+        <attr name="android:rotationY"/>
+        <attr name="android:transformPivotX"/>
+        <attr name="android:transformPivotY"/>
+        <attr name="transformPivotTarget"/>
+
+        <attr name="transitionPathRotate"/>
+        <attr name="android:scaleX"/>
+        <attr name="android:scaleY"/>
+        <attr name="android:translationX"/>
+        <attr name="android:translationY"/>
+        <attr name="android:translationZ"/>
+    </declare-styleable>
+    <declare-styleable name="KeyCycle">
+        <attr name="motionTarget"/>
+        <attr name="curveFit"/>
+        <attr name="framePosition"/>
+        <attr name="transitionEasing"/>
+        <attr name="motionProgress"/>
+        <attr name="waveShape"/>
+        <attr name="wavePhase"/>
+        <attr name="wavePeriod"/>
+        <attr name="waveOffset"/>
+        <attr name="waveVariesBy"/>
+        <attr name="transitionPathRotate"/>
+        <attr name="android:alpha"/>
+        <attr name="android:elevation"/>
+        <attr name="android:rotation"/>
+        <attr name="android:rotationX"/>
+        <attr name="android:rotationY"/>
+        <attr name="android:scaleX"/>
+        <attr name="android:scaleY"/>
+        <attr name="android:translationX"/>
+        <attr name="android:translationY"/>
+        <attr name="android:translationZ"/>
+    </declare-styleable>
+    <declare-styleable name="KeyFrame">
+
+    </declare-styleable>
+    <declare-styleable name="KeyFramesAcceleration">
+
+    </declare-styleable>
+    <declare-styleable name="KeyFramesVelocity">
+
+    </declare-styleable>
+    <declare-styleable name="KeyPosition">
+        
+        <attr format="enum" name="keyPositionType">
             <enum name="deltaRelative" value="0"/>
             <enum name="pathRelative" value="1"/>
             <enum name="parentRelative" value="2"/>
-        </attr><attr format="float" name="percentX"/><attr format="float" name="percentY"/><attr format="float" name="percentWidth"/><attr format="float" name="percentHeight"/><attr name="framePosition"/><attr name="motionTarget"/><attr name="transitionEasing"/><attr name="pathMotionArc"/><attr name="curveFit"/><attr name="drawPath"/><attr name="sizePercent"/></declare-styleable>
-    <declare-styleable name="KeyTimeCycle"><attr name="framePosition"/><attr name="motionTarget"/><attr name="transitionEasing"/><attr name="curveFit"/><attr name="waveShape"/><attr name="wavePeriod"/><attr name="motionProgress"/><attr name="waveOffset"/><attr name="waveDecay"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="transitionPathRotate"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/></declare-styleable>
-    <declare-styleable name="KeyTrigger"><attr name="framePosition"/><attr name="motionTarget"/><attr format="reference" name="triggerReceiver"/><attr format="string" name="onNegativeCross"/><attr format="string" name="onPositiveCross"/><attr format="string" name="onCross"/><attr format="float" name="triggerSlack"/><attr format="reference" name="triggerId"/><attr format="boolean" name="motion_postLayoutCollision"/><attr format="reference" name="motion_triggerOnCollision"/></declare-styleable>
-    <declare-styleable name="Layout"><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="android:orientation"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="barrierMargin"/><attr name="constraint_referenced_ids"/><attr format="dimension" name="maxHeight"/><attr format="dimension" name="maxWidth"/><attr format="dimension" name="minHeight"/><attr format="dimension" name="minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/></declare-styleable>
+        </attr>
+
+        
+        <attr format="float" name="percentX"/>
+
+        
+        <attr format="float" name="percentY"/>
+
+        
+        <attr format="float" name="percentWidth"/>
+
+        
+        <attr format="float" name="percentHeight"/>
+        <attr name="framePosition"/>
+        <attr name="motionTarget"/>
+        <attr name="transitionEasing"/>
+        <attr name="pathMotionArc"/>
+        <attr name="curveFit"/>
+        <attr name="drawPath"/>
+        <attr name="sizePercent"/>
+    </declare-styleable>
+    <declare-styleable name="KeyTimeCycle">
+        <attr name="framePosition"/>
+        <attr name="motionTarget"/>
+        <attr name="transitionEasing"/>
+        <attr name="curveFit"/>
+        <attr name="waveShape"/>
+        <attr name="wavePeriod"/>
+        <attr name="motionProgress"/>
+        <attr name="waveOffset"/>
+        <attr name="wavePhase"/>
+
+        
+        <attr name="waveDecay"/>
+
+        
+        <attr name="android:alpha"/>
+        <attr name="android:elevation"/>
+        <attr name="android:rotation"/>
+        <attr name="android:rotationX"/>
+        <attr name="android:rotationY"/>
+        <attr name="transitionPathRotate"/>
+        <attr name="android:scaleX"/>
+        <attr name="android:scaleY"/>
+        <attr name="android:translationX"/>
+        <attr name="android:translationY"/>
+        <attr name="android:translationZ"/>
+    </declare-styleable>
+    <declare-styleable name="KeyTrigger">
+        <attr name="framePosition"/>
+        <attr name="motionTarget"/>
+        <attr format="reference" name="triggerReceiver"/>
+        <attr format="string" name="onNegativeCross"/>
+        <attr format="string" name="onPositiveCross"/>
+        <attr format="string" name="onCross"/>
+        <attr format="reference" name="viewTransitionOnNegativeCross"/>
+        <attr format="reference" name="viewTransitionOnPositiveCross"/>
+        <attr format="reference" name="viewTransitionOnCross"/>
+        <attr format="float" name="triggerSlack"/>
+        
+        <attr format="reference" name="triggerId"/>
+        <attr format="boolean" name="motion_postLayoutCollision"/>
+        
+        <attr format="reference" name="motion_triggerOnCollision"/>
+    </declare-styleable>
+    <declare-styleable name="Layout">
+
+        <attr name="android:layout_width"/>
+        <attr name="android:layout_height"/>
+        <attr name="layout_constraintWidth"/>
+        <attr name="layout_constraintHeight"/>
+
+        <attr name="android:layout_marginStart"/>
+
+        <attr name="android:layout_marginBottom"/>
+
+        <attr name="android:layout_marginTop"/>
+
+        <attr name="android:layout_marginEnd"/>
+
+        <attr name="android:layout_marginLeft"/>
+
+        <attr name="android:layout_marginRight"/>
+
+        <attr name="layout_constraintCircle"/>
+        <attr name="layout_constraintCircleRadius"/>
+        <attr name="layout_constraintCircleAngle"/>
+        <attr name="layout_constraintGuide_begin"/>
+        <attr name="layout_constraintGuide_end"/>
+        <attr name="layout_constraintGuide_percent"/>
+        <attr name="guidelineUseRtl"/>
+        <attr name="layout_constraintLeft_toLeftOf"/>
+        <attr name="layout_constraintLeft_toRightOf"/>
+        <attr name="layout_constraintRight_toLeftOf"/>
+        <attr name="layout_constraintRight_toRightOf"/>
+        <attr name="layout_constraintTop_toTopOf"/>
+        <attr name="layout_constraintTop_toBottomOf"/>
+        <attr name="layout_constraintBottom_toTopOf"/>
+        <attr name="layout_constraintBottom_toBottomOf"/>
+        <attr name="layout_constraintBaseline_toBaselineOf"/>
+        <attr name="layout_constraintBaseline_toTopOf"/>
+        <attr name="layout_constraintBaseline_toBottomOf"/>
+        <attr name="layout_constraintStart_toEndOf"/>
+        <attr name="layout_constraintStart_toStartOf"/>
+        <attr name="layout_constraintEnd_toStartOf"/>
+        <attr name="layout_constraintEnd_toEndOf"/>
+        <attr name="layout_goneMarginLeft"/>
+        <attr name="layout_goneMarginTop"/>
+        <attr name="layout_goneMarginRight"/>
+        <attr name="layout_goneMarginBottom"/>
+        <attr name="layout_goneMarginStart"/>
+        <attr name="layout_goneMarginEnd"/>
+        <attr name="layout_goneMarginBaseline"/>
+        <attr name="layout_marginBaseline"/>
+        <attr name="layout_constrainedWidth"/>
+        <attr name="layout_constrainedHeight"/>
+        <attr name="layout_constraintHorizontal_bias"/>
+        <attr name="layout_constraintVertical_bias"/>
+        <attr name="layout_constraintWidth_default"/>
+        <attr name="layout_constraintHeight_default"/>
+        <attr name="layout_constraintWidth_min"/>
+        <attr name="layout_constraintWidth_max"/>
+        <attr name="android:orientation"/>
+        <attr name="layout_constraintWidth_percent"/>
+        <attr name="layout_constraintHeight_min"/>
+        <attr name="layout_constraintHeight_max"/>
+        <attr name="layout_constraintHeight_percent"/>
+        <attr name="layout_constraintLeft_creator"/>
+        <attr name="layout_constraintTop_creator"/>
+        <attr name="layout_constraintRight_creator"/>
+        <attr name="layout_constraintBottom_creator"/>
+        <attr name="layout_constraintBaseline_creator"/>
+        <attr name="layout_constraintDimensionRatio"/>
+        <attr name="layout_constraintHorizontal_weight"/>
+        <attr name="layout_constraintVertical_weight"/>
+        <attr name="layout_constraintHorizontal_chainStyle"/>
+        <attr name="layout_constraintVertical_chainStyle"/>
+        <attr name="layout_editor_absoluteX"/>
+        <attr name="layout_editor_absoluteY"/>
+        <attr name="layout_wrapBehaviorInParent"/>
+        <attr name="barrierDirection"/>
+        <attr name="barrierMargin"/>
+        <attr name="constraint_referenced_ids"/>
+        <attr name="constraint_referenced_tags"/>
+        <attr format="dimension" name="maxHeight"/>
+        <attr format="dimension" name="maxWidth"/>
+        <attr format="dimension" name="minHeight"/>
+        <attr format="dimension" name="minWidth"/>
+        <attr name="barrierAllowsGoneWidgets"/>
+        <attr name="chainUseRtl"/>
+    </declare-styleable>
     <declare-styleable name="LinearLayoutCompat">
         
         <attr name="android:orientation"/>
@@ -11303,22 +12228,104 @@
         
         <attr format="reference" name="subMenuArrow"/>
     </declare-styleable>
-    <declare-styleable name="MockView"><attr format="string" name="mock_label"/><attr format="color" name="mock_labelColor"/><attr format="color" name="mock_labelBackgroundColor"/><attr format="color" name="mock_diagonalsColor"/><attr format="boolean" name="mock_showDiagonals"/><attr format="boolean" name="mock_showLabel"/></declare-styleable>
-    <declare-styleable name="Motion"><attr name="animate_relativeTo"/><attr name="transitionEasing"/><attr name="pathMotionArc"/><attr name="motionPathRotate"/><attr name="motionStagger"/><attr name="drawPath"/></declare-styleable>
-    <declare-styleable name="MotionHelper"><attr format="boolean" name="onShow"/><attr format="boolean" name="onHide"/></declare-styleable>
-    <declare-styleable name="MotionLayout"><attr name="layoutDescription"/><attr format="reference" name="currentState"/><attr name="motionProgress"/><attr format="boolean" name="applyMotionScene"/><attr format="boolean" name="showPaths"/><attr format="enum" name="motionDebug">
+    <declare-styleable name="MockView">
+        <attr format="string" name="mock_label"/>
+        <attr format="color" name="mock_labelColor"/>
+        <attr format="color" name="mock_labelBackgroundColor"/>
+        <attr format="color" name="mock_diagonalsColor"/>
+        <attr format="boolean" name="mock_showDiagonals"/>
+        <attr format="boolean" name="mock_showLabel"/>
+    </declare-styleable>
+    <declare-styleable name="Motion">
+        <attr name="animateRelativeTo"/>
+        <attr name="animateCircleAngleTo"/>
+        <attr name="transitionEasing"/>
+        <attr name="pathMotionArc"/>
+        <attr name="motionPathRotate"/>
+        <attr name="motionStagger"/>
+        <attr name="drawPath"/>
+        <attr name="quantizeMotionSteps"/>
+        <attr name="quantizeMotionPhase"/>
+        <attr name="quantizeMotionInterpolator"/>
+
+    </declare-styleable>
+    <declare-styleable name="MotionEffect">
+        <attr format="integer" name="motionEffect_start"/>
+        <attr format="integer" name="motionEffect_end"/>
+        <attr format="dimension" name="motionEffect_translationX"/>
+        <attr format="dimension" name="motionEffect_translationY"/>
+        <attr format="float" name="motionEffect_alpha"/>
+        <attr format="reference" name="motionEffect_viewTransition"/>
+        <attr format="enum" name="motionEffect_move">
+            <enum name="auto" value="-1"/>
+            <enum name="north" value="0"/>
+            <enum name="south" value="1"/>
+            <enum name="east" value="2"/>
+            <enum name="west" value="3"/>
+        </attr>
+        <attr format="boolean" name="motionEffect_strict"/>
+    </declare-styleable>
+    <declare-styleable name="MotionHelper">
+        <attr format="boolean" name="onShow"/>
+        <attr format="boolean" name="onHide"/>
+    </declare-styleable>
+    <declare-styleable name="MotionLabel">
+        <attr name="android:text"/>
+        <attr name="android:textColor"/>
+        <attr name="android:textSize"/>
+        <attr name="android:fontFamily"/>
+        <attr name="android:gravity"/>
+        <attr format="float" name="textPanX"/>
+        <attr format="float" name="textPanY"/>
+        <attr name="android:typeface"/>
+        <attr name="android:shadowRadius"/>
+        <attr name="android:textStyle"/>
+        <attr name="borderRound"/>
+        <attr format="dimension" name="scaleFromTextSize"/>
+        <attr name="borderRoundPercent"/>
+        <attr name="textOutlineThickness"/>
+        <attr name="textOutlineColor"/>
+        <attr format="reference" name="textBackground"/>
+        <attr name="android:autoSizeTextType"/>
+        <attr format="dimension" name="textureWidth"/>
+        <attr format="dimension" name="textureHeight"/>
+        <attr format="integer" name="textureBlurFactor"/>
+        <attr format="float" name="textBackgroundPanX"/>
+        <attr format="float" name="textBackgroundPanY"/>
+        <attr format="float" name="textBackgroundZoom"/>
+        <attr format="float" name="textBackgroundRotate"/>
+        <attr format="enum" name="textureEffect">
+            <enum name="none" value="0"/>
+            <enum name="frost" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="MotionLayout">
+        <attr name="layoutDescription"/>
+        <attr format="reference" name="currentState"/>
+        <attr name="motionProgress"/>
+        <attr format="boolean" name="applyMotionScene"/>
+        <attr format="boolean" name="showPaths"/>
+        <attr format="enum" name="motionDebug">
             <enum name="NO_DEBUG" value="0"/>
             <enum name="SHOW_PROGRESS" value="1"/>
             <enum name="SHOW_PATH" value="2"/>
             <enum name="SHOW_ALL" value="3"/>
-        </attr></declare-styleable>
-    <declare-styleable name="MotionScene"><attr name="defaultDuration"/><attr name="layoutDuringTransition"/></declare-styleable>
-    <declare-styleable name="MotionTelltales"><attr format="enum" name="telltales_velocityMode">
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="MotionScene">
+        <attr name="defaultDuration"/>
+        <attr name="layoutDuringTransition"/>
+    </declare-styleable>
+    <declare-styleable name="MotionTelltales">
+        <attr format="enum" name="telltales_velocityMode">
             <enum name="layout" value="0"/>
             <enum name="postLayout" value="1"/>
             <enum name="staticPostLayout" value="2"/>
             <enum name="staticLayout" value="3"/>
-        </attr><attr format="color" name="telltales_tailColor"/><attr format="float" name="telltales_tailScale"/></declare-styleable>
+        </attr>
+        <attr format="color" name="telltales_tailColor"/>
+        <attr format="float" name="telltales_tailScale"/>
+    </declare-styleable>
     <declare-styleable name="NavigationBarActiveIndicator">
     
     <attr name="android:color"/>
@@ -11469,25 +12476,60 @@
     
     <attr format="dimension" name="drawerLayoutCornerSize"/>
   </declare-styleable>
-    <declare-styleable name="OnClick"><attr name="targetId"/><attr name="clickAction">
+    <declare-styleable name="OnClick">
+        <attr name="targetId"/>
+        <attr name="clickAction">
             <flag name="toggle" value="0x0011"/>
             <flag name="transitionToEnd" value="0x0001"/>
             <flag name="transitionToStart" value="0x0010"/>
             <flag name="jumpToEnd" value="0x100"/>
             <flag name="jumpToStart" value="0x1000"/>
-        </attr></declare-styleable>
-    <declare-styleable name="OnSwipe"><attr format="float" name="dragScale"/><attr format="float" name="dragThreshold"/><attr format="float" name="maxVelocity"/><attr format="float" name="maxAcceleration"/><attr name="dragDirection"/><attr name="touchAnchorId"/><attr name="touchAnchorSide"/><attr format="reference" name="touchRegionId"/><attr format="reference" name="limitBoundsTo"/><attr format="flags" name="nestedScrollFlags">
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="OnSwipe">
+        <attr format="float" name="dragScale"/>
+        <attr format="float" name="dragThreshold"/>
+        <attr format="enum" name="autoCompleteMode">
+            <enum name="continuousVelocity" value="0"/>
+            <enum name="spring" value="1"/>
+        </attr>
+        <attr format="float" name="maxVelocity"/>
+        <attr format="float" name="maxAcceleration"/>
+        <attr format="float" name="springMass"/>
+        <attr format="float" name="springStiffness"/>
+        <attr format="float" name="springDamping"/>
+        <attr format="float" name="springStopThreshold"/>
+        <attr format="flags" name="springBoundary">
+            <flag name="overshoot" value="0"/>
+            <flag name="bounceStart" value="1"/>
+            <flag name="bounceEnd" value="2"/>
+            <flag name="bounceBoth" value="3"/>
+        </attr>
+        <attr name="dragDirection"/>
+        <attr name="touchAnchorId"/>
+        <attr name="touchAnchorSide"/>
+        <attr format="reference" name="rotationCenterId"/>
+        <attr format="reference" name="touchRegionId"/>
+        <attr format="reference" name="limitBoundsTo"/>
+        <attr format="flags" name="nestedScrollFlags">
             <flag name="none" value="0"/>
             <flag name="disablePostScroll" value="1"/>
             <flag name="disableScroll" value="2"/>
-        </attr><attr format="boolean" name="moveWhenScrollAtTop"/><attr format="enum" name="onTouchUp">
+            <flag name="supportScrollUp" value="4"/>
+        </attr>
+        <attr format="boolean" name="moveWhenScrollAtTop"/>
+        <attr format="enum" name="onTouchUp">
             <enum name="autoComplete" value="0"/>
             <enum name="autoCompleteToStart" value="1"/>
             <enum name="autoCompleteToEnd" value="2"/>
             <enum name="stop" value="3"/>
             <enum name="decelerate" value="4"/>
             <enum name="decelerateAndComplete" value="5"/>
-        </attr></declare-styleable>
+            <enum name="neverCompleteToStart" value="6"/>
+            <enum name="neverCompleteToEnd" value="7"/>
+        </attr>
+
+    </declare-styleable>
     <declare-styleable name="PopupWindow">
         
         <attr format="boolean" name="overlapAnchor"/>
@@ -11498,7 +12540,18 @@
         
         <attr format="boolean" name="state_above_anchor"/>
     </declare-styleable>
-    <declare-styleable name="PropertySet"><attr name="android:visibility"/><attr name="visibilityMode"/><attr format="float" name="android:alpha"/><attr name="motionProgress"/><attr name="layout_constraintTag"/></declare-styleable>
+    <declare-styleable name="PropertySet">
+        
+        <attr name="android:visibility"/>
+        <attr name="visibilityMode"/>
+
+        
+        <attr name="android:alpha"/>
+
+        
+        <attr name="motionProgress"/>
+        <attr name="layout_constraintTag"/>
+    </declare-styleable>
     <declare-styleable name="RadialViewGroup">
 
     
@@ -11748,7 +12801,10 @@
         
         <attr name="android:entries"/>
     </declare-styleable>
-    <declare-styleable name="State"><attr name="android:id"/><attr format="reference" name="constraints"/></declare-styleable>
+    <declare-styleable name="State">
+        <attr name="android:id"/>
+        <attr format="reference" name="constraints"/>
+    </declare-styleable>
     <declare-styleable name="StateListDrawable">
         
         <attr name="android:visible"/>
@@ -11769,7 +12825,9 @@
         
         <attr name="android:drawable"/>
     </declare-styleable>
-    <declare-styleable name="StateSet"><attr format="reference" name="defaultState"/></declare-styleable>
+    <declare-styleable name="StateSet">
+        <attr format="reference" name="defaultState"/>
+    </declare-styleable>
     <declare-styleable name="SwitchCompat">
         
         <attr name="android:thumb"/>
@@ -11960,6 +13018,22 @@
         <attr name="android:shadowRadius"/>
         
         <attr name="fontVariationSettings"/>
+    </declare-styleable>
+    <declare-styleable name="TextEffects">
+        <attr name="android:text"/>
+        <attr name="android:textSize"/>
+        <attr name="android:fontFamily"/>
+        <attr name="android:typeface"/>
+        <attr name="android:shadowColor"/>
+        <attr name="android:shadowDx"/>
+        <attr name="android:shadowDy"/>
+        <attr name="android:shadowRadius"/>
+        <attr name="android:textStyle"/>
+        <attr format="color" name="textFillColor"/>
+        <attr name="textOutlineThickness"/>
+        <attr name="textOutlineColor"/>
+        <attr name="borderRound"/>
+        <attr name="borderRoundPercent"/>
     </declare-styleable>
     <declare-styleable name="TextInputEditText">
     
@@ -12317,25 +13391,85 @@
     <attr name="android:padding"/>
     <attr format="color" name="backgroundTint"/>
   </declare-styleable>
-    <declare-styleable name="Transform"><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr format="dimension" name="android:translationX"/><attr format="dimension" name="android:translationY"/><attr format="dimension" name="android:translationZ"/></declare-styleable>
-    <declare-styleable name="Transition"><attr name="android:id"/><attr format="reference" name="constraintSetStart"/><attr format="reference" name="constraintSetEnd"/><attr format="boolean" name="transitionDisable"/><attr name="layoutDuringTransition"/><attr name="pathMotionArc"/><attr format="enum" name="autoTransition">
+    <declare-styleable name="Transform">
+        
+        <attr name="android:elevation"/>
+
+        
+        <attr name="android:rotation"/>
+
+        
+        <attr name="android:rotationX"/>
+
+        
+        <attr name="android:rotationY"/>
+
+        
+        <attr name="android:scaleX"/>
+
+        
+        <attr name="android:scaleY"/>
+
+        
+        <attr name="android:transformPivotX"/>
+
+        
+        <attr name="android:transformPivotY"/>
+
+        <attr name="transformPivotTarget"/>
+
+        
+        <attr format="dimension" name="android:translationX"/>
+
+        
+        <attr format="dimension" name="android:translationY"/>
+
+        
+        <attr format="dimension" name="android:translationZ"/>
+
+    </declare-styleable>
+    <declare-styleable name="Transition">
+        <attr name="android:id"/>
+        <attr format="reference" name="constraintSetStart"/>
+        <attr format="reference" name="constraintSetEnd"/>
+        <attr name="transitionDisable"/>
+        <attr name="layoutDuringTransition"/>
+
+        <attr name="pathMotionArc"/>
+        <attr format="enum" name="autoTransition">
             <enum name="none" value="0"/>
             <enum name="jumpToStart" value="1"/>
             <enum name="jumpToEnd" value="2"/>
             <enum name="animateToStart" value="3"/>
             <enum name="animateToEnd" value="4"/>
-        </attr><attr format="string|reference|enum" name="motionInterpolator">
+        </attr>
+        <attr format="string|reference|enum" name="motionInterpolator">
             <enum name="easeInOut" value="0"/>
             <enum name="easeIn" value="1"/>
             <enum name="easeOut" value="2"/>
             <enum name="linear" value="3"/>
-            <enum name="bounce" value="5"/>
-        </attr><attr name="duration"/><attr format="float" name="staggered"/><attr name="transitionFlags">
+            <enum name="bounce" value="4"/>
+            <enum name="overshoot" value="5"/>
+            <enum name="anticipate" value="6"/>
+        </attr>
+
+        <attr name="duration"/>
+        <attr format="float" name="staggered"/>
+
+        <attr name="transitionFlags">
             <flag name="none" value="0"/>
             <flag name="beginOnFirstDraw" value="1"/>
-            />
-        </attr></declare-styleable>
-    <declare-styleable name="Variant"><attr format="dimension" name="region_widthLessThan"/><attr format="dimension" name="region_widthMoreThan"/><attr format="dimension" name="region_heightLessThan"/><attr format="dimension" name="region_heightMoreThan"/><attr name="constraints"/></declare-styleable>
+            <flag name="disableIntraAutoTransition" value="2"/>
+            <flag name="onInterceptTouchReturnSwipe" value="4"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="Variant">
+        <attr format="dimension" name="region_widthLessThan"/>
+        <attr format="dimension" name="region_widthMoreThan"/>
+        <attr format="dimension" name="region_heightLessThan"/>
+        <attr format="dimension" name="region_heightMoreThan"/>
+        <attr name="constraints"/>
+    </declare-styleable>
     <declare-styleable name="View">
         
         <attr format="dimension" name="paddingStart"/>
@@ -12384,12 +13518,32 @@
         <attr name="android:inflatedId"/>
         <attr name="android:id"/>
     </declare-styleable>
+    <declare-styleable name="ViewTransition">
+        <attr name="android:id"/>
+        <attr name="motionTarget"/>
+        <attr name="viewTransitionMode"/>
+        <attr name="onStateTransition"/>
+        <attr name="duration"/>
+        <attr format="integer" name="upDuration"/>
+        <attr name="transitionDisable"/>
+        <attr name="pathMotionArc"/>
+        <attr name="motionInterpolator"/>
+        <attr format="reference" name="SharedValueId"/>
+        <attr format="integer" name="SharedValue"/>
+        <attr format="reference" name="setsTag"/>
+        <attr format="reference" name="clearsTag"/>
+        <attr format="reference" name="ifTagSet"/>
+        <attr format="reference" name="ifTagNotSet"/>
+    </declare-styleable>
+    <declare-styleable name="include">
+        <attr name="constraintSet"/>
+    </declare-styleable>
     <macro name="m3_comp_assist_chip_container_shape">?attr/shapeAppearanceCornerSmall</macro>
     <macro name="m3_comp_assist_chip_label_text_type">?attr/textAppearanceLabelLarge</macro>
     <macro name="m3_comp_badge_color">?attr/colorError</macro>
     <macro name="m3_comp_badge_large_label_text_color">?attr/colorOnError</macro>
     <macro name="m3_comp_badge_large_label_text_type">?attr/textAppearanceLabelSmall</macro>
-    <macro name="m3_comp_bottom_app_bar_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_bottom_app_bar_container_color">?attr/colorSurfaceContainer</macro>
     <macro name="m3_comp_checkbox_selected_container_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_checkbox_selected_disabled_container_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_checkbox_selected_disabled_icon_color">?attr/colorSurface</macro>
@@ -12398,7 +13552,7 @@
     <macro name="m3_comp_checkbox_selected_icon_color">?attr/colorOnPrimary</macro>
     <macro name="m3_comp_checkbox_unselected_outline_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_circular_progress_indicator_active_indicator_color">?attr/colorPrimary</macro>
-    <macro name="m3_comp_date_picker_modal_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_date_picker_modal_container_color">?attr/colorSurfaceContainerHigh</macro>
     <macro name="m3_comp_date_picker_modal_container_shape">?attr/shapeAppearanceCornerExtraLarge</macro>
     <macro name="m3_comp_date_picker_modal_date_label_text_type">?attr/textAppearanceBodyLarge</macro>
     <macro name="m3_comp_date_picker_modal_date_selected_container_color">?attr/colorPrimary</macro>
@@ -12419,15 +13573,15 @@
     <macro name="m3_comp_date_picker_modal_year_selection_year_selected_container_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_date_picker_modal_year_selection_year_selected_label_text_color">?attr/colorOnPrimary</macro>
     <macro name="m3_comp_date_picker_modal_year_selection_year_unselected_label_text_color">?attr/colorOnSurfaceVariant</macro>
-    <macro name="m3_comp_dialog_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_dialog_container_color">?attr/colorSurfaceContainerHigh</macro>
     <macro name="m3_comp_dialog_container_shape">?attr/shapeAppearanceCornerExtraLarge</macro>
     <macro name="m3_comp_dialog_headline_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_dialog_headline_type">?attr/textAppearanceHeadlineSmall</macro>
     <macro name="m3_comp_dialog_supporting_text_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_dialog_supporting_text_type">?attr/textAppearanceBodyMedium</macro>
     <macro name="m3_comp_divider_color">?attr/colorOutlineVariant</macro>
-    <macro name="m3_comp_elevated_button_container_color">?attr/colorSurface</macro>
-    <macro name="m3_comp_elevated_card_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_elevated_button_container_color">?attr/colorSurfaceContainerLow</macro>
+    <macro name="m3_comp_elevated_card_container_color">?attr/colorSurfaceContainerLow</macro>
     <macro name="m3_comp_elevated_card_container_shape">?attr/shapeAppearanceCornerMedium</macro>
     <macro name="m3_comp_extended_fab_primary_container_color">?attr/colorPrimaryContainer</macro>
     <macro name="m3_comp_extended_fab_primary_container_shape">?attr/shapeAppearanceCornerLarge</macro>
@@ -12435,7 +13589,7 @@
     <macro name="m3_comp_extended_fab_primary_label_text_type">?attr/textAppearanceLabelLarge</macro>
     <macro name="m3_comp_extended_fab_secondary_container_color">?attr/colorSecondaryContainer</macro>
     <macro name="m3_comp_extended_fab_secondary_icon_color">?attr/colorOnSecondaryContainer</macro>
-    <macro name="m3_comp_extended_fab_surface_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_extended_fab_surface_container_color">?attr/colorSurfaceContainerHigh</macro>
     <macro name="m3_comp_extended_fab_surface_icon_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_extended_fab_tertiary_container_color">?attr/colorTertiaryContainer</macro>
     <macro name="m3_comp_extended_fab_tertiary_icon_color">?attr/colorOnTertiaryContainer</macro>
@@ -12446,21 +13600,21 @@
     <macro name="m3_comp_fab_primary_small_container_shape">?attr/shapeAppearanceCornerMedium</macro>
     <macro name="m3_comp_fab_secondary_container_color">?attr/colorSecondaryContainer</macro>
     <macro name="m3_comp_fab_secondary_icon_color">?attr/colorOnSecondaryContainer</macro>
-    <macro name="m3_comp_fab_surface_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_fab_surface_container_color">?attr/colorSurfaceContainerHigh</macro>
     <macro name="m3_comp_fab_surface_icon_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_fab_tertiary_container_color">?attr/colorTertiaryContainer</macro>
     <macro name="m3_comp_fab_tertiary_icon_color">?attr/colorOnTertiaryContainer</macro>
-    <macro name="m3_comp_filled_autocomplete_menu_list_item_selected_container_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_filled_autocomplete_menu_container_color">?attr/colorSurfaceContainer</macro>
     <macro name="m3_comp_filled_autocomplete_text_field_input_text_type">?attr/textAppearanceBodyLarge</macro>
     <macro name="m3_comp_filled_button_container_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_filled_button_label_text_color">?attr/colorOnPrimary</macro>
     <macro name="m3_comp_filled_button_label_text_type">?attr/textAppearanceLabelLarge</macro>
-    <macro name="m3_comp_filled_card_container_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_filled_card_container_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_filled_card_container_shape">?attr/shapeAppearanceCornerMedium</macro>
     <macro name="m3_comp_filled_icon_button_container_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_filled_icon_button_toggle_selected_icon_color">?attr/colorOnPrimary</macro>
     <macro name="m3_comp_filled_icon_button_toggle_unselected_icon_color">?attr/colorPrimary</macro>
-    <macro name="m3_comp_filled_text_field_container_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_filled_text_field_container_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_filled_text_field_container_shape">?attr/shapeAppearanceCornerExtraSmall</macro>
     <macro name="m3_comp_filled_text_field_error_active_indicator_color">?attr/colorError</macro>
     <macro name="m3_comp_filled_text_field_error_supporting_text_color">?attr/colorError</macro>
@@ -12479,8 +13633,9 @@
     <macro name="m3_comp_input_chip_container_shape">?attr/shapeAppearanceCornerSmall</macro>
     <macro name="m3_comp_input_chip_label_text_type">?attr/textAppearanceLabelLarge</macro>
     <macro name="m3_comp_linear_progress_indicator_active_indicator_color">?attr/colorPrimary</macro>
-    <macro name="m3_comp_linear_progress_indicator_track_color">?attr/colorSurfaceVariant</macro>
-    <macro name="m3_comp_menu_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_linear_progress_indicator_track_color">?attr/colorSurfaceContainerHighest</macro>
+    <macro name="m3_comp_menu_container_color">?attr/colorSurfaceContainer</macro>
+    <macro name="m3_comp_menu_list_item_selected_container_color">?attr/colorSecondaryContainer</macro>
     <macro name="m3_comp_navigation_bar_active_focus_icon_color">?attr/colorOnSecondaryContainer</macro>
     <macro name="m3_comp_navigation_bar_active_focus_label_text_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_navigation_bar_active_focus_state_layer_color">?attr/colorOnSurface</macro>
@@ -12493,7 +13648,7 @@
     <macro name="m3_comp_navigation_bar_active_pressed_icon_color">?attr/colorOnSecondaryContainer</macro>
     <macro name="m3_comp_navigation_bar_active_pressed_label_text_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_navigation_bar_active_pressed_state_layer_color">?attr/colorOnSurface</macro>
-    <macro name="m3_comp_navigation_bar_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_navigation_bar_container_color">?attr/colorSurfaceContainer</macro>
     <macro name="m3_comp_navigation_bar_inactive_focus_icon_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_navigation_bar_inactive_focus_label_text_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_navigation_bar_inactive_focus_state_layer_color">?attr/colorOnSurface</macro>
@@ -12518,7 +13673,6 @@
     <macro name="m3_comp_navigation_drawer_active_pressed_icon_color">?attr/colorOnSecondaryContainer</macro>
     <macro name="m3_comp_navigation_drawer_active_pressed_label_text_color">?attr/colorOnSecondaryContainer</macro>
     <macro name="m3_comp_navigation_drawer_active_pressed_state_layer_color">?attr/colorOnSecondaryContainer</macro>
-    <macro name="m3_comp_navigation_drawer_container_color">?attr/colorSurface</macro>
     <macro name="m3_comp_navigation_drawer_headline_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_navigation_drawer_headline_type">?attr/textAppearanceTitleSmall</macro>
     <macro name="m3_comp_navigation_drawer_inactive_focus_icon_color">?attr/colorOnSurface</macro>
@@ -12533,6 +13687,7 @@
     <macro name="m3_comp_navigation_drawer_inactive_pressed_label_text_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_navigation_drawer_inactive_pressed_state_layer_color">?attr/colorOnSecondaryContainer</macro>
     <macro name="m3_comp_navigation_drawer_label_text_type">?attr/textAppearanceLabelLarge</macro>
+    <macro name="m3_comp_navigation_drawer_modal_container_color">?attr/colorSurfaceContainerLow</macro>
     <macro name="m3_comp_navigation_rail_active_focus_state_layer_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_navigation_rail_active_hover_state_layer_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_navigation_rail_active_icon_color">?attr/colorOnSecondaryContainer</macro>
@@ -12546,7 +13701,7 @@
     <macro name="m3_comp_navigation_rail_inactive_label_text_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_navigation_rail_inactive_pressed_state_layer_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_navigation_rail_label_text_type">?attr/textAppearanceLabelMedium</macro>
-    <macro name="m3_comp_outlined_autocomplete_menu_list_item_selected_container_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_outlined_autocomplete_menu_container_color">?attr/colorSurfaceContainer</macro>
     <macro name="m3_comp_outlined_autocomplete_text_field_caret_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_outlined_autocomplete_text_field_input_text_type">?attr/textAppearanceBodyLarge</macro>
     <macro name="m3_comp_outlined_button_disabled_outline_color">?attr/colorOnSurface</macro>
@@ -12614,8 +13769,7 @@
     <macro name="m3_comp_radio_button_unselected_icon_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_radio_button_unselected_pressed_icon_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_radio_button_unselected_pressed_state_layer_color">?attr/colorPrimary</macro>
-    <macro name="m3_comp_search_bar_container_color">?attr/colorSurface</macro>
-    <macro name="m3_comp_search_bar_container_surface_tint_layer_color">?attr/elevationOverlayColor</macro>
+    <macro name="m3_comp_search_bar_container_color">?attr/colorSurfaceContainerHigh</macro>
     <macro name="m3_comp_search_bar_hover_state_layer_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_search_bar_hover_supporting_text_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_search_bar_input_text_color">?attr/colorOnSurface</macro>
@@ -12626,8 +13780,7 @@
     <macro name="m3_comp_search_bar_supporting_text_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_search_bar_supporting_text_type">?attr/textAppearanceBodyLarge</macro>
     <macro name="m3_comp_search_bar_trailing_icon_color">?attr/colorOnSurfaceVariant</macro>
-    <macro name="m3_comp_search_view_container_color">?attr/colorSurface</macro>
-    <macro name="m3_comp_search_view_container_surface_tint_layer_color">?attr/elevationOverlayColor</macro>
+    <macro name="m3_comp_search_view_container_color">?attr/colorSurfaceContainerHigh</macro>
     <macro name="m3_comp_search_view_divider_color">?attr/colorOutline</macro>
     <macro name="m3_comp_search_view_docked_container_shape">?attr/shapeAppearanceCornerExtraLarge</macro>
     <macro name="m3_comp_search_view_header_input_text_color">?attr/colorOnSurface</macro>
@@ -12646,18 +13799,19 @@
     <macro name="m3_comp_secondary_navigation_tab_pressed_state_layer_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_secondary_navigation_tab_with_icon_active_icon_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_secondary_navigation_tab_with_icon_inactive_icon_color">?attr/colorOnSurfaceVariant</macro>
-    <macro name="m3_comp_sheet_bottom_docked_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_sheet_bottom_docked_container_color">?attr/colorSurfaceContainerLow</macro>
     <macro name="m3_comp_sheet_bottom_docked_container_shape">?attr/shapeAppearanceCornerExtraLarge</macro>
     <macro name="m3_comp_sheet_bottom_docked_drag_handle_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_sheet_side_detached_container_shape">?attr/shapeAppearanceCornerLarge</macro>
-    <macro name="m3_comp_sheet_side_docked_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_sheet_side_docked_modal_container_color">?attr/colorSurfaceContainerLow</macro>
     <macro name="m3_comp_sheet_side_docked_modal_container_shape">?attr/shapeAppearanceCornerLarge</macro>
+    <macro name="m3_comp_sheet_side_docked_standard_container_color">?attr/colorSurface</macro>
     <macro name="m3_comp_slider_active_track_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_slider_disabled_active_track_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_slider_disabled_handle_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_slider_disabled_inactive_track_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_slider_handle_color">?attr/colorPrimary</macro>
-    <macro name="m3_comp_slider_inactive_track_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_slider_inactive_track_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_slider_label_container_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_slider_label_label_text_color">?attr/colorOnPrimary</macro>
     <macro name="m3_comp_snackbar_container_color">?attr/colorSurfaceInverse</macro>
@@ -12670,8 +13824,8 @@
     <macro name="m3_comp_switch_disabled_selected_icon_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_switch_disabled_selected_track_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_switch_disabled_unselected_handle_color">?attr/colorOnSurface</macro>
-    <macro name="m3_comp_switch_disabled_unselected_icon_color">?attr/colorSurfaceVariant</macro>
-    <macro name="m3_comp_switch_disabled_unselected_track_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_switch_disabled_unselected_icon_color">?attr/colorSurfaceContainerHighest</macro>
+    <macro name="m3_comp_switch_disabled_unselected_track_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_switch_disabled_unselected_track_outline_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_switch_selected_focus_handle_color">?attr/colorPrimaryContainer</macro>
     <macro name="m3_comp_switch_selected_focus_icon_color">?attr/colorOnPrimaryContainer</macro>
@@ -12689,23 +13843,23 @@
     <macro name="m3_comp_switch_selected_pressed_track_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_switch_selected_track_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_switch_unselected_focus_handle_color">?attr/colorOnSurfaceVariant</macro>
-    <macro name="m3_comp_switch_unselected_focus_icon_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_switch_unselected_focus_icon_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_switch_unselected_focus_state_layer_color">?attr/colorOnSurface</macro>
-    <macro name="m3_comp_switch_unselected_focus_track_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_switch_unselected_focus_track_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_switch_unselected_focus_track_outline_color">?attr/colorOutline</macro>
     <macro name="m3_comp_switch_unselected_handle_color">?attr/colorOutline</macro>
     <macro name="m3_comp_switch_unselected_hover_handle_color">?attr/colorOnSurfaceVariant</macro>
-    <macro name="m3_comp_switch_unselected_hover_icon_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_switch_unselected_hover_icon_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_switch_unselected_hover_state_layer_color">?attr/colorOnSurface</macro>
-    <macro name="m3_comp_switch_unselected_hover_track_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_switch_unselected_hover_track_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_switch_unselected_hover_track_outline_color">?attr/colorOutline</macro>
-    <macro name="m3_comp_switch_unselected_icon_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_switch_unselected_icon_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_switch_unselected_pressed_handle_color">?attr/colorOnSurfaceVariant</macro>
-    <macro name="m3_comp_switch_unselected_pressed_icon_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_switch_unselected_pressed_icon_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_switch_unselected_pressed_state_layer_color">?attr/colorOnSurface</macro>
-    <macro name="m3_comp_switch_unselected_pressed_track_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_switch_unselected_pressed_track_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_switch_unselected_pressed_track_outline_color">?attr/colorOutline</macro>
-    <macro name="m3_comp_switch_unselected_track_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_switch_unselected_track_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_switch_unselected_track_outline_color">?attr/colorOutline</macro>
     <macro name="m3_comp_text_button_focus_state_layer_color">?attr/colorPrimary</macro>
     <macro name="m3_comp_text_button_hover_state_layer_color">?attr/colorPrimary</macro>
@@ -12717,9 +13871,9 @@
     <macro name="m3_comp_time_input_time_input_field_label_text_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_time_input_time_input_field_supporting_text_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_time_input_time_input_field_supporting_text_type">?attr/textAppearanceBodySmall</macro>
-    <macro name="m3_comp_time_picker_clock_dial_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_time_picker_clock_dial_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_time_picker_clock_dial_selector_handle_container_color">?attr/colorPrimary</macro>
-    <macro name="m3_comp_time_picker_container_color">?attr/colorSurface</macro>
+    <macro name="m3_comp_time_picker_container_color">?attr/colorSurfaceContainerHigh</macro>
     <macro name="m3_comp_time_picker_container_shape">?attr/shapeAppearanceCornerExtraLarge</macro>
     <macro name="m3_comp_time_picker_headline_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_comp_time_picker_headline_type">?attr/textAppearanceLabelMedium</macro>
@@ -12744,7 +13898,7 @@
     <macro name="m3_comp_time_picker_time_selector_selected_pressed_state_layer_color">?attr/colorOnPrimaryContainer</macro>
     <macro name="m3_comp_time_picker_time_selector_separator_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_time_picker_time_selector_separator_type">?attr/textAppearanceDisplayLarge</macro>
-    <macro name="m3_comp_time_picker_time_selector_unselected_container_color">?attr/colorSurfaceVariant</macro>
+    <macro name="m3_comp_time_picker_time_selector_unselected_container_color">?attr/colorSurfaceContainerHighest</macro>
     <macro name="m3_comp_time_picker_time_selector_unselected_focus_state_layer_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_time_picker_time_selector_unselected_hover_state_layer_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_time_picker_time_selector_unselected_label_text_color">?attr/colorOnSurface</macro>
@@ -12756,6 +13910,7 @@
     <macro name="m3_comp_top_app_bar_small_headline_color">?attr/colorOnSurface</macro>
     <macro name="m3_comp_top_app_bar_small_headline_type">?attr/textAppearanceTitleLarge</macro>
     <macro name="m3_comp_top_app_bar_small_leading_icon_color">?attr/colorOnSurface</macro>
+    <macro name="m3_comp_top_app_bar_small_on_scroll_container_color">?attr/colorSurfaceContainer</macro>
     <macro name="m3_comp_top_app_bar_small_trailing_icon_color">?attr/colorOnSurfaceVariant</macro>
     <macro name="m3_sys_color_dark_surface_tint">?attr/colorPrimary</macro>
     <macro name="m3_sys_color_light_surface_tint">?attr/colorPrimary</macro>
