@@ -23,10 +23,13 @@ public class RadarService extends AccessibilityService {
     private boolean isPopupShowing = false;
     private MediaPlayer mediaPlayer; 
 
-    // Daftar kata haram
-    private String[] blacklist = {"slot", "gacor", "zeus", "judi", "judol", "maxwin", "rtp"}; 
+    // DATABASE KATA HARAM DIPERLUAS (Anti M-Banking error)
+    private String[] blacklist = {
+        "slot", "gacor", "zeus", "judi", "judol", "maxwin", "rtp", 
+        "togel", "toto", "pragmatic", "scatter", "mahjong ways", 
+        "sbobet", "parlay", "naga99", "slot88"
+    }; 
     
-    // Daftar kata aman (Whitelist) agar tidak salah tangkap iklan NU Online dll
     private String[] whitelist = {"ad slot", "ad-slot", "banner slot", "time slot", "slot waktu"};
 
     @Override
@@ -65,11 +68,9 @@ public class RadarService extends AccessibilityService {
     private boolean cekTeksBerbahaya(AccessibilityNodeInfo node) {
         if (node == null) return false;
         
-        // Hanya baca teks yang terlihat (hilangkan pembacaan ID/Class yang bikin error)
-        if (node.getText() != null) {
+        if (node.isVisibleToUser() && node.getText() != null) {
             String teks = node.getText().toString().toLowerCase();
             
-            // 1. Cek Whitelist dulu. Kalau ini adalah kata aman (seperti kotak iklan), abaikan!
             boolean isAman = false;
             for (String aman : whitelist) {
                 if (teks.contains(aman)) {
@@ -78,10 +79,8 @@ public class RadarService extends AccessibilityService {
                 }
             }
             
-            // 2. Kalau bukan kata aman, baru cek pakai Regex (Pendeteksi Kata Utuh)
             if (!isAman) {
                 for (String kata : blacklist) {
-                    // \b memastikan kata berdiri sendiri. misal: " slot " kedetek, tapi "ad-slot" lolos.
                     if (Pattern.compile("\\b" + kata + "\\b").matcher(teks).find()) {
                         return true; 
                     }
