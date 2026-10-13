@@ -15,14 +15,19 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class RadarService extends AccessibilityService {
     private WindowManager windowManager;
     private View popupView;
     private boolean isPopupShowing = false;
-    private MediaPlayer mediaPlayer; // Pemutar MP3
+    private MediaPlayer mediaPlayer; 
 
-    private String[] blacklist = {"slot", "gacor", "zeus", "judi", "judol", "maxwin", "88", "rtp"}; 
+    // Daftar kata haram
+    private String[] blacklist = {"slot", "gacor", "zeus", "judi", "judol", "maxwin", "rtp"}; 
+    
+    // Daftar kata aman (Whitelist) agar tidak salah tangkap iklan NU Online dll
+    private String[] whitelist = {"ad slot", "ad-slot", "banner slot", "time slot", "slot waktu"};
 
     @Override
     public void onServiceConnected() {
@@ -59,12 +64,31 @@ public class RadarService extends AccessibilityService {
 
     private boolean cekTeksBerbahaya(AccessibilityNodeInfo node) {
         if (node == null) return false;
+        
+        // Hanya baca teks yang terlihat (hilangkan pembacaan ID/Class yang bikin error)
         if (node.getText() != null) {
             String teks = node.getText().toString().toLowerCase();
-            for (String kata : blacklist) {
-                if (teks.contains(kata)) return true; 
+            
+            // 1. Cek Whitelist dulu. Kalau ini adalah kata aman (seperti kotak iklan), abaikan!
+            boolean isAman = false;
+            for (String aman : whitelist) {
+                if (teks.contains(aman)) {
+                    isAman = true;
+                    break;
+                }
+            }
+            
+            // 2. Kalau bukan kata aman, baru cek pakai Regex (Pendeteksi Kata Utuh)
+            if (!isAman) {
+                for (String kata : blacklist) {
+                    // \b memastikan kata berdiri sendiri. misal: " slot " kedetek, tapi "ad-slot" lolos.
+                    if (Pattern.compile("\\b" + kata + "\\b").matcher(teks).find()) {
+                        return true; 
+                    }
+                }
             }
         }
+        
         for (int i = 0; i < node.getChildCount(); i++) {
             if (cekTeksBerbahaya(node.getChild(i))) return true;
         }
@@ -76,11 +100,10 @@ public class RadarService extends AccessibilityService {
         catatRiwayat();
         isPopupShowing = true;
 
-        // --- MENYALAKAN ALARM MP3 ---
         try {
             if (mediaPlayer == null) {
                 mediaPlayer = MediaPlayer.create(this, R.raw.alarm);
-                mediaPlayer.setLooping(true); // Biar bunyinya muter terus sampai dimatikan
+                mediaPlayer.setLooping(true);
             }
             if (!mediaPlayer.isPlaying()) {
                 mediaPlayer.start();
@@ -129,10 +152,9 @@ public class RadarService extends AccessibilityService {
     private void hilangkanPopup() {
         if (!isPopupShowing) return;
 
-        // --- MATIKAN ALARM MP3 SAAT POPUP DITUTUP ---
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
-            mediaPlayer.seekTo(0); // Kembalikan lagu ke awal
+            mediaPlayer.seekTo(0); 
         }
 
         if (popupView != null) {
