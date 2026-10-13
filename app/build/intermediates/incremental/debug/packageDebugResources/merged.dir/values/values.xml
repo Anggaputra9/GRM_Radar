@@ -2,10 +2,11 @@
 <resources>
     <color name="maroon_bg">#561C24</color>
     <string name="app_name">GRM - Radar</string>
-    <style name="Theme.App.Starting" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_background</item>
-    </style>
-    <style name="Theme.GRMRadar" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">#561C24</item>
+    </style>
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:statusBarColor">#561C24</item>
     </style>
 </resources>

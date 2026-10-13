@@ -4,6 +4,7 @@ color maroon_bg
 drawable logo
 drawable logo_foreground
 drawable splash_background
+drawable splash_bg
 id btnBack
 id btnKembali
 id btnLihatRiwayat
@@ -15,11 +16,13 @@ id tvTime
 id tvTitle
 layout activity_main
 layout activity_riwayat
+layout activity_splash
 layout item_riwayat
 layout layout_popup
 mipmap ic_launcher
 mipmap ic_launcher_round
+raw alarm
 string app_name
-style Theme.App.Starting
-style Theme.GRMRadar
+style AppTheme
+style SplashTheme
 xml accessibility_config

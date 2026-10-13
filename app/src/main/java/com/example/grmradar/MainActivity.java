@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Pulihkan ke tema utama aplikasi sebelum layout dimuat
-        setTheme(R.style.Theme.GRMRadar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -43,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        View btnLihatRiwayat = findViewById(R.id.btnLihatRiwayat);
-        btnLihatRiwayat.setOnClickListener(v -> {
+        findViewById(R.id.btnLihatRiwayat).setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, RiwayatActivity.class));
         });
     }

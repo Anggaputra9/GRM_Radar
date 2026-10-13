@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:2:1-36:12
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:2:1-34:12
 MERGED from [com.google.android.material:material:1.10.0] C:\Users\angga\.gradle\caches\8.12\transforms\3ccc64462570d36b6b200f97426cc0db\transformed\material-1.10.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\angga\.gradle\caches\8.12\transforms\35db1a462865ee0c412031b6f9f73830\transformed\jetified-appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\angga\.gradle\caches\8.12\transforms\1f3214966a71818bca756b3cc36d7821\transformed\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
@@ -58,8 +58,8 @@ ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:3:
 	android:name
 		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:3:22-74
 application
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:4:5-35:19
-INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:4:5-35:19
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:4:5-33:19
+INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:4:5-33:19
 MERGED from [com.google.android.material:material:1.10.0] C:\Users\angga\.gradle\caches\8.12\transforms\3ccc64462570d36b6b200f97426cc0db\transformed\material-1.10.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.10.0] C:\Users\angga\.gradle\caches\8.12\transforms\3ccc64462570d36b6b200f97426cc0db\transformed\material-1.10.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\angga\.gradle\caches\8.12\transforms\1f3214966a71818bca756b3cc36d7821\transformed\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
@@ -91,49 +91,51 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\angga\.gradle\cach
 	android:allowBackup
 		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:5:9-35
 	android:theme
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:10:9-46
-activity#com.example.grmradar.MainActivity
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:12:9-20:20
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:10:9-74
+activity#com.example.grmradar.SplashActivity
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:12:9-17:20
 	android:exported
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:14:13-36
-	android:theme
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:15:13-54
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:12:50-73
 	android:name
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:13:13-41
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:12:19-49
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:16:13-19:29
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:13:13-16:29
 action#android.intent.action.MAIN
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:17:17-69
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:14:17-69
 	android:name
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:17:25-66
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:14:25-66
 category#android.intent.category.LAUNCHER
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:18:17-77
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:15:17-77
 	android:name
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:18:27-74
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:15:27-74
+activity#com.example.grmradar.MainActivity
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:19:9-50
+	android:name
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:19:19-47
 activity#com.example.grmradar.RiwayatActivity
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:22:9-53
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:20:9-53
 	android:name
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:22:19-50
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:20:19-50
 service#com.example.grmradar.RadarService
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:24:9-34:19
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:22:9-32:19
 	android:exported
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:26:13-36
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:24:13-36
 	android:permission
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:27:13-79
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:25:13-79
 	android:name
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:25:13-41
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:23:13-41
 intent-filter#action:name:android.accessibilityservice.AccessibilityService
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:28:13-30:29
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:26:13-28:29
 action#android.accessibilityservice.AccessibilityService
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:29:17-92
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:27:17-92
 	android:name
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:29:25-89
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:27:25-89
 meta-data#android.accessibilityservice
-ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:31:13-33:64
+ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:29:13-31:64
 	android:resource
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:33:17-61
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:31:17-61
 	android:name
-		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:32:17-60
+		ADDED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:30:17-60
 uses-sdk
 INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml

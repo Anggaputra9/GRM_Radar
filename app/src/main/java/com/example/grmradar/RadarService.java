@@ -3,6 +3,7 @@ package com.example.grmradar;
 import android.accessibilityservice.AccessibilityService;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,8 +20,8 @@ public class RadarService extends AccessibilityService {
     private WindowManager windowManager;
     private View popupView;
     private boolean isPopupShowing = false;
-    
-    // BLACKLIST (Tambahan kata kunci yang sering muncul di dalam web)
+    private MediaPlayer mediaPlayer; // Pemutar MP3
+
     private String[] blacklist = {"slot", "gacor", "zeus", "judi", "judol", "maxwin", "88", "rtp"}; 
 
     @Override
@@ -31,7 +32,6 @@ public class RadarService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        // Cek status saklar dari aplikasi
         SharedPreferences prefs = getSharedPreferences("RadarPrefs", MODE_PRIVATE);
         if (!prefs.getBoolean("isRadarActive", false)) {
             hilangkanPopup();
@@ -41,7 +41,6 @@ public class RadarService extends AccessibilityService {
         AccessibilityNodeInfo rootNode = getRootInActiveWindow();
         if (rootNode == null) return;
 
-        // 1. CEK GOOGLE SEARCH (Jika sedang cari artikel, abaikan)
         AccessibilityNodeInfo urlNode = getUrlNode(rootNode);
         if (urlNode != null && urlNode.getText() != null) {
             String url = urlNode.getText().toString().toLowerCase();
@@ -51,7 +50,6 @@ public class RadarService extends AccessibilityService {
             }
         }
 
-        // 2. SAPU JAGAT SELURUH TEKS DI LAYAR SITUS WEB
         if (cekTeksBerbahaya(rootNode)) {
             tampilkanPopup();
         } else {
@@ -59,31 +57,37 @@ public class RadarService extends AccessibilityService {
         }
     }
 
-    // FUNGSI REKURSIF PEMINDAI LAYAR KESELURUHAN
     private boolean cekTeksBerbahaya(AccessibilityNodeInfo node) {
         if (node == null) return false;
-
         if (node.getText() != null) {
             String teks = node.getText().toString().toLowerCase();
             for (String kata : blacklist) {
-                if (teks.contains(kata)) {
-                    return true; 
-                }
+                if (teks.contains(kata)) return true; 
             }
         }
-
         for (int i = 0; i < node.getChildCount(); i++) {
-            if (cekTeksBerbahaya(node.getChild(i))) {
-                return true;
-            }
+            if (cekTeksBerbahaya(node.getChild(i))) return true;
         }
         return false;
     }
 
     private void tampilkanPopup() {
         if (isPopupShowing) return;
-        
         catatRiwayat();
+        isPopupShowing = true;
+
+        // --- MENYALAKAN ALARM MP3 ---
+        try {
+            if (mediaPlayer == null) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.alarm);
+                mediaPlayer.setLooping(true); // Biar bunyinya muter terus sampai dimatikan
+            }
+            if (!mediaPlayer.isPlaying()) {
+                mediaPlayer.start();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         LayoutInflater inflater = LayoutInflater.from(this);
         popupView = inflater.inflate(R.layout.layout_popup, null);
@@ -102,7 +106,6 @@ public class RadarService extends AccessibilityService {
         });
 
         windowManager.addView(popupView, params);
-        isPopupShowing = true;
     }
 
     private void catatRiwayat() {
@@ -111,28 +114,31 @@ public class RadarService extends AccessibilityService {
         try {
             JSONArray array = new JSONArray(jsonRiwayat);
             int count = array.length() + 1;
-            
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH.mm");
             Date now = new Date();
-            
             JSONObject obj = new JSONObject();
             obj.put("title", "Terdeteksi " + count);
             obj.put("date", dateFormat.format(now));
             obj.put("time", timeFormat.format(now));
-            
             array.put(obj);
             prefs.edit().putString("data", array.toString()).apply();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {}
     }
 
     private void hilangkanPopup() {
-        if (isPopupShowing && popupView != null) {
-            windowManager.removeView(popupView);
-            isPopupShowing = false;
+        if (!isPopupShowing) return;
+
+        // --- MATIKAN ALARM MP3 SAAT POPUP DITUTUP ---
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+            mediaPlayer.seekTo(0); // Kembalikan lagu ke awal
         }
+
+        if (popupView != null) {
+            windowManager.removeView(popupView);
+        }
+        isPopupShowing = false;
     }
 
     private AccessibilityNodeInfo getUrlNode(AccessibilityNodeInfo node) {

@@ -24,7 +24,7 @@
 17-->[androidx.core:core:1.9.0] C:\Users\angga\.gradle\caches\8.12\transforms\c0930b83bf4b2b8b41bbf8f4fdbddc09\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 18
 19    <application
-19-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:4:5-35:19
+19-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:4:5-33:19
 20        android:allowBackup="true"
 20-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:5:9-35
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -39,52 +39,53 @@
 26-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:7:9-54
 27        android:supportsRtl="true"
 27-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:9:9-35
-28        android:theme="@style/Theme.GRMRadar" >
-28-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:10:9-46
+28        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" >
+28-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:10:9-74
 29        <activity
-29-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:12:9-20:20
-30            android:name="com.example.grmradar.MainActivity"
-30-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:13:13-41
-31            android:exported="true"
-31-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:14:13-36
-32            android:theme="@style/Theme.App.Starting" >
-32-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:15:13-54
-33            <intent-filter>
-33-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:16:13-19:29
-34                <action android:name="android.intent.action.MAIN" />
-34-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:17:17-69
-34-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:17:25-66
-35
-36                <category android:name="android.intent.category.LAUNCHER" />
-36-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:18:17-77
-36-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:18:27-74
-37            </intent-filter>
-38        </activity>
+29-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:12:9-17:20
+30            android:name="com.example.grmradar.SplashActivity"
+30-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:12:19-49
+31            android:exported="true" >
+31-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:12:50-73
+32            <intent-filter>
+32-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:13:13-16:29
+33                <action android:name="android.intent.action.MAIN" />
+33-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:14:17-69
+33-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:14:25-66
+34
+35                <category android:name="android.intent.category.LAUNCHER" />
+35-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:15:17-77
+35-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:15:27-74
+36            </intent-filter>
+37        </activity>
+38        <activity android:name="com.example.grmradar.MainActivity" />
+38-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:19:9-50
+38-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:19:19-47
 39        <activity android:name="com.example.grmradar.RiwayatActivity" />
-39-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:22:9-53
-39-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:22:19-50
+39-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:20:9-53
+39-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:20:19-50
 40
 41        <service
-41-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:24:9-34:19
+41-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:22:9-32:19
 42            android:name="com.example.grmradar.RadarService"
-42-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:25:13-41
+42-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:23:13-41
 43            android:exported="true"
-43-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:26:13-36
+43-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:24:13-36
 44            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
-44-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:27:13-79
+44-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:25:13-79
 45            <intent-filter>
-45-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:28:13-30:29
+45-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:26:13-28:29
 46                <action android:name="android.accessibilityservice.AccessibilityService" />
-46-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:29:17-92
-46-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:29:25-89
+46-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:27:17-92
+46-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:27:25-89
 47            </intent-filter>
 48
 49            <meta-data
-49-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:31:13-33:64
+49-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:29:13-31:64
 50                android:name="android.accessibilityservice"
-50-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:32:17-60
+50-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:30:17-60
 51                android:resource="@xml/accessibility_config" />
-51-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:33:17-61
+51-->E:\kuliah\semester6\java\GRMRadar\app\src\main\AndroidManifest.xml:31:17-61
 52        </service>
 53
 54        <provider
